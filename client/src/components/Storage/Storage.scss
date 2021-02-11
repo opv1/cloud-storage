@@ -1,0 +1,45 @@
+.storage {
+  display: flex;
+  height: calc(100vh - 100px);
+  margin: 0 2rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__drop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #696969;
+    width: 100%;
+    height: calc(100vh - 100px);
+    font-size: 3rem;
+    color: #696969;
+  }
+
+  &__control {
+    display: flex;
+  }
+
+  &__upload {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #696969;
+    border-radius: 3px;
+    margin-left: 1rem;
+
+    label {
+      padding: 10px;
+      margin: 0;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

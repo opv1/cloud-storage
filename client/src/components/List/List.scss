@@ -1,0 +1,10 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__empty {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+  }
+}

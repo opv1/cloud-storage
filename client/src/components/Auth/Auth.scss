@@ -1,0 +1,41 @@
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 3rem;
+    background-color: #fff;
+  }
+
+  &__brand {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    input:focus {
+      background-color: #eee;
+    }
+  }
+}

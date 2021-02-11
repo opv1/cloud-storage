@@ -1,0 +1,19 @@
+.alert {
+  position: absolute;
+  right: 20px;
+  top: 80px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: #fff;
+
+  &__message {
+    margin-right: 1rem;
+  }
+
+  i {
+    cursor: pointer;
+  }
+}
