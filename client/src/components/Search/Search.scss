@@ -1,2 +1,10 @@
 .search {
+  &__input {
+    margin-right: 0.5rem;
+    padding: 5px;
+  }
+
+  &__button {
+    padding: 5px;
+  }
 }

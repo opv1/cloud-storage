@@ -8,37 +8,64 @@ import './Modal.scss'
 const Modal = () => {
   const [value, setValue] = useState('')
 
-  const { currentDir } = useSelector((state) => state.file)
+  const { currentDir, file } = useSelector((state) => state.file)
+  const { type } = useSelector((state) => state.modal)
 
   const dispatch = useDispatch()
 
-  return (
-    <div className='modal'>
-      <div className='modal__content'>
-        <div className='modal__header'>
-          <span className='modal__title'>Create new folder</span>
-          <i
-            className='fas fa-window-close'
-            onClick={() => dispatch(actionCreators.setModal())}
-          ></i>
-        </div>
-        <div className='modal__block'>
-          <Input
-            onChange={(e) => setValue(e.target.value)}
-            id='folder'
-            value={value}
-            name='folder'
-            placeholder='Folder name'
-          />
-          <Button
-            onClick={() => dispatch(actions.createDir(currentDir, value))}
-            name='Create'
-            disabled={!value}
-          />
+  if (type === 'create') {
+    return (
+      <div className='modal'>
+        <div className='modal__content'>
+          <div className='modal__header'>
+            <span className='modal__title'>Create new folder</span>
+            <i
+              className='fas fa-window-close'
+              onClick={() => dispatch(actionCreators.closeModal())}
+            ></i>
+          </div>
+          <div className='modal__block'>
+            <Input
+              className='modal__input'
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
+              name='folder'
+              placeholder='Folder name'
+            />
+            <Button
+              className='modal__button'
+              onClick={() => dispatch(actions.createDir(currentDir, value))}
+              name='Create'
+              disabled={!value}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
+
+  if (type === 'confirm') {
+    return (
+      <div className='modal'>
+        <div className='modal__content'>
+          <div className='modal__header'>
+            <span className='modal__title'>Exactly remove?</span>
+            <i
+              className='fas fa-window-close'
+              onClick={() => dispatch(actionCreators.closeModal())}
+            ></i>
+          </div>
+          <div className='modal__block'>
+            <Button
+              className='modal__button'
+              onClick={() => dispatch(actions.deleteFile(file))}
+              name='Yep'
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default Modal

@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT } from '../constants'
+import { LOGIN_USER, LOGOUT_USER } from '../constants'
 
 const initialState = {
   token: null,
@@ -7,13 +7,13 @@ const initialState = {
 
 const userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case USER_LOGIN:
+    case LOGIN_USER:
       return {
         ...state,
         token: payload.token,
         user: { ...payload.user },
       }
-    case USER_LOGOUT:
+    case LOGOUT_USER:
       return {
         ...state,
         token: null,

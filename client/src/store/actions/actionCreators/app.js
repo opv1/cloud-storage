@@ -1,9 +1,5 @@
-import { SET_LOADING, SET_MODAL } from '../../constants'
+import { SET_LOADING } from '../../constants'
 
 export const setLoading = () => ({
   type: SET_LOADING,
-})
-
-export const setModal = () => ({
-  type: SET_MODAL,
 })

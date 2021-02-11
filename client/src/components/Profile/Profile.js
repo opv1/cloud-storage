@@ -2,7 +2,7 @@ import React from 'react'
 import './Profile.scss'
 
 const Profile = () => {
-  return <div></div>
+  return <div className='profile'></div>
 }
 
 export default Profile

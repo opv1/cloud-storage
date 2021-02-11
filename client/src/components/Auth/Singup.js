@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
-import actionCreators from '../../store/actions/actionCreators/index'
 import { Input, Label, Button } from '../UI/index'
 import './Auth.scss'
 
@@ -19,10 +18,8 @@ const Singup = () => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const onSingup = (e, form) => {
+  const onSingupUser = (e, form) => {
     e.preventDefault()
-
-    dispatch(actionCreators.setLoading())
     dispatch(actions.singupUser(form))
   }
 
@@ -32,16 +29,18 @@ const Singup = () => {
         <span className='auth__brand'>Singup Form</span>
         <form className='auth__form'>
           <div className='auth__block'>
-            <Label htmlFor='email' name='Email' />
+            <Label className='auth__label' htmlFor='email' name='Email' />
             <Input
+              className='auth__input'
               onChange={handlerChange}
               id='email'
               value={form.email}
               name='email'
               placeholder='example@mail.com'
             />
-            <Label htmlFor='password' name='Password' />
+            <Label className='auth__label' htmlFor='password' name='Password' />
             <Input
+              className='auth__input'
               onChange={handlerChange}
               id='password'
               type='password'
@@ -60,7 +59,8 @@ const Singup = () => {
             /> */}
           </div>
           <Button
-            onClick={(e) => onSingup(e, form)}
+            className='auth__button'
+            onClick={(e) => onSingupUser(e, form)}
             name='Singup'
             disabled={loading}
           />

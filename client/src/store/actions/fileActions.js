@@ -5,6 +5,8 @@ import actionCreators from './actionCreators/index'
 export const getFiles = (dirId, sortType) => {
   return async (dispatch) => {
     try {
+      dispatch(actionCreators.setLoading())
+
       const { getItem } = useStorage()
 
       const data = getItem('cloudStorage')
@@ -29,7 +31,9 @@ export const getFiles = (dirId, sortType) => {
 
       dispatch(actionCreators.setFiles(response.data))
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
+    } finally {
+      dispatch(actionCreators.setLoading())
     }
   }
 }
@@ -51,9 +55,9 @@ export const createDir = (dirId, name) => {
 
       dispatch(actionCreators.addFile(response.data))
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
-      dispatch(actionCreators.setModal())
+      dispatch(actionCreators.closeModal())
     }
   }
 }
@@ -94,7 +98,7 @@ export const uploadFile = (dirId, file) => {
 
       dispatch(actionCreators.addFile(response.data))
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
     }
   }
 }
@@ -126,7 +130,7 @@ export const downloadFile = (file) => {
         link.remove()
       }
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
     }
   }
 }
@@ -144,9 +148,11 @@ export const deleteFile = (file) => {
 
       dispatch(actionCreators.deleteFile(file._id))
 
-      dispatch(actionCreators.alertShow(response.data.message))
+      dispatch(actionCreators.showAlert(response.data.message))
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
+    } finally {
+      dispatch(actionCreators.closeModal())
     }
   }
 }
@@ -154,6 +160,8 @@ export const deleteFile = (file) => {
 export const searchFile = (search) => {
   return async (dispatch) => {
     try {
+      dispatch(actionCreators.setLoading())
+
       const { getItem } = useStorage()
 
       const data = getItem('cloudStorage')
@@ -164,7 +172,9 @@ export const searchFile = (search) => {
 
       dispatch(actionCreators.setFiles(response.data))
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
+    } finally {
+      dispatch(actionCreators.setLoading())
     }
   }
 }

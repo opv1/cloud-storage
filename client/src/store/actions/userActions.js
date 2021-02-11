@@ -5,13 +5,15 @@ import actionCreators from './actionCreators/index'
 export const singupUser = (form) => {
   return async (dispatch) => {
     try {
+      dispatch(actionCreators.setLoading())
+
       const response = await axios.post('/api/auth/singup', {
         ...form,
       })
 
-      dispatch(actionCreators.alertShow(response.data.message))
+      dispatch(actionCreators.showAlert(response.data.message))
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.setLoading())
     }
@@ -21,17 +23,19 @@ export const singupUser = (form) => {
 export const loginUser = (form) => {
   return async (dispatch) => {
     try {
+      dispatch(actionCreators.setLoading())
+
       const { setItem } = useStorage()
 
       const response = await axios.post('/api/auth/login', {
         ...form,
       })
 
-      dispatch(actionCreators.userLogin(response.data))
+      dispatch(actionCreators.loginUser(response.data))
 
       setItem('cloudStorage', response.data)
     } catch (err) {
-      dispatch(actionCreators.alertShow(err.response.data.message))
+      dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.setLoading())
     }
@@ -42,7 +46,7 @@ export const logoutUser = () => {
   return (dispatch) => {
     const { removeItem } = useStorage()
 
-    dispatch(actionCreators.userLogout())
+    dispatch(actionCreators.logoutUser())
 
     removeItem('cloudStorage')
   }

@@ -1,6 +1,7 @@
 import {
   SET_CURRENT_DIR,
   SET_FILES,
+  SET_FILE,
   ADD_FILE,
   DELETE_FILE,
   PUSH_STACK,
@@ -10,6 +11,7 @@ import {
 const initialState = {
   currentDir: null,
   files: [],
+  file: {},
   stack: [],
 }
 
@@ -24,6 +26,11 @@ const fileReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         files: payload,
+      }
+    case SET_FILE:
+      return {
+        ...state,
+        file: payload,
       }
     case ADD_FILE:
       return {

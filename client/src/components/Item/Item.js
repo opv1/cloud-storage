@@ -18,14 +18,13 @@ const File = ({ file }) => {
 
   const onDownloadFile = (e) => {
     e.stopPropagation()
-
     dispatch(actions.downloadFile(file))
   }
 
   const onDeleteFile = (e) => {
     e.stopPropagation()
-
-    dispatch(actions.deleteFile(file))
+    dispatch(actionCreators.setFile(file))
+    dispatch(actionCreators.setModal('confirm'))
   }
 
   return (

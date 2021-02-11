@@ -1,11 +1,12 @@
 .storage {
   display: flex;
-  height: calc(100vh - 100px);
   margin: 0 2rem;
+  height: calc(100vh - 78px);
 
   &__container {
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
     width: 100%;
   }
 
@@ -13,33 +14,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 1rem;
     border: 2px dashed #696969;
     width: 100%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 110px);
     font-size: 3rem;
     color: #696969;
-  }
-
-  &__control {
-    display: flex;
-  }
-
-  &__upload {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #696969;
-    border-radius: 3px;
-    margin-left: 1rem;
-
-    label {
-      padding: 10px;
-      margin: 0;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

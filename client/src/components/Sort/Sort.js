@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Sort.scss'
 
 const Sort = ({ sortType, setSortType }) => {
   return (
     <div className='sort'>
+      <span className='sort__title'>Sorting files:</span>
       <select
         className='sort__select'
         onChange={(e) => setSortType(e.target.value)}

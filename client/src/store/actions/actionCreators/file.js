@@ -1,6 +1,7 @@
 import {
   SET_CURRENT_DIR,
   SET_FILES,
+  SET_FILE,
   ADD_FILE,
   DELETE_FILE,
   PUSH_STACK,
@@ -15,6 +16,11 @@ export const setCurrentDir = (currentDir) => ({
 export const setFiles = (files) => ({
   type: SET_FILES,
   payload: files,
+})
+
+export const setFile = (file) => ({
+  type: SET_FILE,
+  payload: file,
 })
 
 export const addFile = (file) => ({

@@ -1,10 +1,10 @@
-import { ALERT_SHOW, ALERT_HIDE } from '../../constants'
+import { SHOW_ALERT, HIDE_ALERT } from '../../constants'
 
-export const alertShow = (message) => ({
-  type: ALERT_SHOW,
+export const showAlert = (message) => ({
+  type: SHOW_ALERT,
   payload: message,
 })
 
-export const alertHide = () => ({
-  type: ALERT_HIDE,
+export const hideAlert = () => ({
+  type: HIDE_ALERT,
 })

@@ -1,4 +1,4 @@
-@keyframes loader1 {
+@keyframes loader__container1 {
   0% {
     transform: scale(0);
   }
@@ -8,17 +8,7 @@
   }
 }
 
-@keyframes loader3 {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(0);
-  }
-}
-
-@keyframes loader2 {
+@keyframes loader__container2 {
   0% {
     transform: translate(0, 0);
   }
@@ -28,39 +18,57 @@
   }
 }
 
+@keyframes loader__container3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
 .loader {
-  position: relative;
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 
-.loader div {
-  position: absolute;
-  top: 33px;
-  border-radius: 50%;
-  width: 13px;
-  height: 13px;
-  background: #fff;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
+  &__container {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
 
-.loader div:nth-child(1) {
-  left: 8px;
-  animation: loader1 0.6s infinite;
-}
+    div {
+      position: absolute;
+      top: 33px;
+      border-radius: 50%;
+      width: 13px;
+      height: 13px;
+      background: #000;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
 
-.loader div:nth-child(2) {
-  left: 8px;
-  animation: loader2 0.6s infinite;
-}
+    div:nth-child(1) {
+      left: 8px;
+      animation: loader__container1 0.6s infinite;
+    }
 
-.loader div:nth-child(3) {
-  left: 32px;
-  animation: loader2 0.6s infinite;
-}
+    div:nth-child(2) {
+      left: 8px;
+      animation: loader__container2 0.6s infinite;
+    }
 
-.loader div:nth-child(4) {
-  left: 56px;
-  animation: loader3 0.6s infinite;
+    div:nth-child(3) {
+      left: 32px;
+      animation: loader__container2 0.6s infinite;
+    }
+
+    div:nth-child(4) {
+      left: 56px;
+      animation: loader__container3 0.6s infinite;
+    }
+  }
 }

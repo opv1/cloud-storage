@@ -3,6 +3,7 @@
   flex-direction: column;
   margin: 0.5rem;
   width: 200px;
+  height: 200px;
 
   &__image {
     display: flex;
@@ -11,8 +12,8 @@
     cursor: pointer;
 
     i {
-      font-size: 9rem;
       display: block;
+      font-size: 9rem;
     }
   }
 
@@ -27,8 +28,21 @@
     margin: 0 0.5rem;
 
     i {
-      cursor: pointer;
       font-size: 1.5rem;
+      opacity: 0;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover {
+    .item__control {
+      i {
+        opacity: 0.5;
+      }
     }
   }
 }

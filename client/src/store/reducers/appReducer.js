@@ -1,8 +1,7 @@
-import { SET_LOADING, SET_MODAL } from '../constants'
+import { SET_LOADING } from '../constants'
 
 const initialState = {
   loading: false,
-  modal: false,
 }
 
 const appReducer = (state = initialState, { type }) => {
@@ -12,11 +11,7 @@ const appReducer = (state = initialState, { type }) => {
         ...state,
         loading: !state.loading,
       }
-    case SET_MODAL:
-      return {
-        ...state,
-        modal: !state.modal,
-      }
+
     default:
       return state
   }

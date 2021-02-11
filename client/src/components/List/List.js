@@ -6,8 +6,15 @@ import './List.scss'
 const List = () => {
   const { files } = useSelector((state) => state.file)
 
+  const styles = {}
+
+  if (files.length === 0) {
+    styles.justifyContent = 'center'
+    styles.alignItems = 'center'
+  }
+
   return (
-    <div className='list'>
+    <div className='list' style={styles}>
       {files.length !== 0 ? (
         files.map((file) => <Item key={file._id} file={file} />)
       ) : (

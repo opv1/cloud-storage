@@ -1,0 +1,27 @@
+.panel {
+  display: flex;
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  &__upload {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    border: 1px solid #696969;
+    border-radius: 3px;
+    padding: 1rem;
+  }
+
+  &__label {
+    padding: 0;
+  }
+
+  &__input {
+    padding: 0;
+  }
+}

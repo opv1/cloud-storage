@@ -7,9 +7,9 @@ import { Alert, Navbar, Modal } from './components/index'
 import './App.scss'
 
 function App() {
-  const { token } = useSelector((state) => state.user)
   const { alert } = useSelector((state) => state.alert)
-  const { modal } = useSelector((state) => state.app)
+  const { modal } = useSelector((state) => state.modal)
+  const { token } = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
 
@@ -23,7 +23,7 @@ function App() {
     const data = getItem('cloudStorage')
 
     if (data && data.token) {
-      dispatch(actionCreators.userLogin(data))
+      dispatch(actionCreators.loginUser(data))
     }
     // eslint-disable-next-line
   }, [])

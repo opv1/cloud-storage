@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import actions from '../../store/actions/index'
+import { Search } from '../index'
 import './Navbar.scss'
 
 const Navbar = ({ isAuthenticated }) => {
@@ -12,6 +13,7 @@ const Navbar = ({ isAuthenticated }) => {
       <div className='navbar__brand'>
         <span className='navbar__title'>Cloud storage</span>
       </div>
+      <Search />
       <nav className='navbar__nav'>
         {isAuthenticated ? (
           <ul className='navbar__list'>

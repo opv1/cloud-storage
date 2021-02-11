@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70%;
+  height: calc(100vh - 66px);
 
   &__container {
     display: flex;
@@ -14,15 +14,9 @@
     background-color: #fff;
   }
 
-  &__brand {
+  &__title {
     margin-bottom: 1rem;
     font-size: 2rem;
-  }
-
-  &__block {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
   }
 
   &__form {
@@ -37,5 +31,11 @@
     input:focus {
       background-color: #eee;
     }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
   }
 }
