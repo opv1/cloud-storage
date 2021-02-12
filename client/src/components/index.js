@@ -1,8 +1,8 @@
 import Alert from './Alert/Alert'
 import Login from './Auth/Login'
 import Singup from './Auth/Singup'
-import Item from './Item/Item'
-import List from './List/List'
+import Disk from './Disk/Disk'
+import File from './File/File'
 import Loader from './Loader/Loader'
 import Modal from './Modal/Modal'
 import Navbar from './Navbar/Navbar'
@@ -16,8 +16,8 @@ export {
   Alert,
   Login,
   Singup,
-  Item,
-  List,
+  Disk,
+  File,
   Loader,
   Modal,
   Navbar,

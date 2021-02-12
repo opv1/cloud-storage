@@ -1,4 +1,16 @@
-.item {
+@keyframes file-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.file {
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
@@ -19,15 +31,15 @@
 
   &__block {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     margin: 0.5rem;
 
     i {
+      margin: 0.5rem;
       font-size: 1.5rem;
       opacity: 0;
       cursor: pointer;
-      margin: 0.5rem;
 
       &:hover {
         opacity: 1;
@@ -37,6 +49,10 @@
 
   &__name {
     font-size: 1.5rem;
+  }
+
+  &-enter-active {
+    animation: file-enter 500ms forwards;
   }
 
   &:hover {

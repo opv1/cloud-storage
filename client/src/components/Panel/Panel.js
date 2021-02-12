@@ -68,8 +68,14 @@ const Panel = () => {
         <div className='panel__views'>
           <span>View files:</span>
           <div className='panel__icons'>
-            <i className='fas fa-list'></i>
-            <i className='fas fa-table'></i>
+            <i
+              className='fas fa-list'
+              onClick={() => dispatch(actionCreators.setView('list'))}
+            ></i>
+            <i
+              className='fas fa-table'
+              onClick={() => dispatch(actionCreators.setView('table'))}
+            ></i>
           </div>
         </div>
       </div>

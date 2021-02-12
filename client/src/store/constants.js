@@ -1,6 +1,8 @@
 export const SHOW_ALERT = 'SHOW_ALERT'
 export const HIDE_ALERT = 'HIDE_ALERT'
 export const SET_LOADING = 'SET_LOADING'
+export const SET_VIEW = 'SET_VIEW'
+export const SET_PROGRESS = 'SET_PROGRESS'
 export const SET_MODAL = 'SET_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 export const SET_CURRENT_DIR = 'SET_CURRENT_DIR'

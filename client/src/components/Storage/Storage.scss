@@ -1,23 +1,41 @@
 .storage {
-  display: flex;
-  margin: 0 2rem;
-  height: calc(100vh - 60px);
+  height: 100%;
 
   &__container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr repeat(4, 1fr);
   }
 
-  &__drop {
+  &_list {
+    flex-wrap: wrap;
+  }
+
+  &_table {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #696969;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 4fr repeat(4, 1fr);
+  }
+
+  &__name {
+    grid-column-start: 2;
+  }
+
+  &__date {
+    justify-self: center;
+    grid-column-start: 5;
+  }
+
+  &__size {
+    justify-self: center;
+    grid-column-start: 6;
+  }
+
+  &__empty {
     width: 100%;
-    height: calc(100vh - 60px);
-    font-size: 3rem;
-    color: #696969;
+    font-size: 2rem;
+    text-align: center;
   }
 }

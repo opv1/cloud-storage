@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
 import actionCreators from '../../store/actions/actionCreators/index'
-import './Item.scss'
+import './File.scss'
 
 const File = ({ file }) => {
   const { currentDir } = useSelector((state) => state.file)
@@ -28,16 +28,16 @@ const File = ({ file }) => {
   }
 
   return (
-    <div className='item'>
-      <div className='item__image' onClick={() => onOpenFolder(file)}>
+    <div className='file'>
+      <div className='file__image' onClick={() => onOpenFolder(file)}>
         {file.type === 'dir' ? (
           <i className='fas fa-folder-open'></i>
         ) : (
           <i className='fas fa-file' onClick={(e) => onDownloadFile(e)}></i>
         )}
       </div>
-      <div className='item__block'>
-        <span className='item__name'>{file.name}</span>
+      <div className='file__block'>
+        <span className='file__name'>{file.name}</span>
         <i className='fas fa-trash-alt' onClick={(e) => onDeleteFile(e)}></i>
       </div>
     </div>

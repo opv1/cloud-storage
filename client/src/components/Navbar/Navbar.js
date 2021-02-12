@@ -24,7 +24,7 @@ const Navbar = ({ isAuthenticated }) => {
                 exact
                 activeClassName='navbar__link_active'
               >
-                Storage
+                Disk
               </NavLink>
             </li>
             <li className='navbar__item'>

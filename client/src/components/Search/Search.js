@@ -1,22 +1,31 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import actions from '../../store/actions/index'
-import { Input, Button } from '../UI/index'
+import { Input } from '../UI/index'
 import './Search.scss'
 
 const Search = () => {
   const [value, setValue] = useState('')
-
-  const { loading } = useSelector((state) => state.app)
+  const [searchTimeout, setSearchTimeout] = useState(false)
 
   const dispatch = useDispatch()
 
   const handlerChange = (e) => {
     setValue(e.target.value)
-  }
 
-  const onSearchFile = () => {
-    dispatch(actions.searchFile(value))
+    if (searchTimeout) {
+      clearTimeout(searchTimeout)
+    }
+
+    if (e.target.value) {
+      setSearchTimeout(
+        setTimeout(() => {
+          dispatch(actions.searchFile(value))
+        }, 500)
+      )
+    } else {
+      dispatch(actions.getFiles())
+    }
   }
 
   const onResetSearch = () => {
@@ -34,14 +43,10 @@ const Search = () => {
           name='search'
           placeholder='Searching...'
         />
-        {value ? <i class='fas fa-times' onClick={onResetSearch}></i> : null}
+        {value ? (
+          <i className='fas fa-times' onClick={onResetSearch}></i>
+        ) : null}
       </div>
-      {/*       <Button
-        className='search__button'
-        onClick={onSearchFile}
-        name='Search'
-        disabled={loading}
-      /> */}
     </div>
   )
 }

@@ -1,0 +1,23 @@
+.disk {
+  display: flex;
+  margin: 0 2rem;
+  height: calc(100vh - 60px);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  &__drop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #696969;
+    width: 100%;
+    height: calc(100vh - 60px);
+    font-size: 3rem;
+    color: #696969;
+  }
+}
