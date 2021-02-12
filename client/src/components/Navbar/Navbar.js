@@ -13,7 +13,7 @@ const Navbar = ({ isAuthenticated }) => {
       <div className='navbar__brand'>
         <span className='navbar__title'>Cloud storage</span>
       </div>
-      <Search />
+      {isAuthenticated ? <Search /> : null}
       <nav className='navbar__nav'>
         {isAuthenticated ? (
           <ul className='navbar__list'>

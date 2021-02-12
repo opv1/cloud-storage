@@ -1,10 +1,24 @@
 .progress {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
   margin: 1.5rem 0;
+  height: 1.5rem;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #696969;
 
-  &__status {
+  &__bar {
+    width: 50%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #f1404b;
+  }
+
+  &__percent {
+    position: absolute;
+    left: 50%;
     font-size: 1.5rem;
+    color: #fff;
   }
 }

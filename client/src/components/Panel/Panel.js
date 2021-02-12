@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
 import actionCreators from '../../store/actions/actionCreators/index'
-import { Sort } from '../index'
 import { Button, Label, Input } from '../UI/index'
 import './Panel.scss'
 
@@ -30,21 +29,18 @@ const Panel = () => {
 
   return (
     <div className='panel'>
-      <div className='panel__container'>
-        <div className='panel__buttons'>
-          <Button
-            className='panel__button'
-            onClick={() => onGoBack()}
-            name='Back'
-            disabled={!currentDir}
-          />
-          <Button
-            className='panel__button'
-            onClick={() => dispatch(actionCreators.setModal('create'))}
-            name='Create folder'
-          />
-        </div>
-        <Sort sortType={sortType} setSortType={setSortType} />
+      <div className='panel__buttons'>
+        <Button
+          className='panel__button'
+          onClick={() => onGoBack()}
+          name='Back'
+          disabled={!currentDir}
+        />
+        <Button
+          className='panel__button'
+          onClick={() => dispatch(actionCreators.setModal('create'))}
+          name='Create folder'
+        />
       </div>
       <div className='panel__upload'>
         <Label className='panel__label' htmlFor='file' name='Upload file(s)' />
@@ -56,6 +52,26 @@ const Panel = () => {
           name='file'
           multiple={true}
         />
+      </div>
+      <div className='panel__options'>
+        <div className='panel__sort'>
+          <span>Sorting files:</span>
+          <select
+            onChange={(e) => setSortType(e.target.value)}
+            value={sortType}
+          >
+            <option value='type'>Type</option>
+            <option value='name'>Name</option>
+            <option value='date'>Date</option>
+          </select>
+        </div>
+        <div className='panel__views'>
+          <span>View files:</span>
+          <div className='panel__icons'>
+            <i className='fas fa-list'></i>
+            <i className='fas fa-table'></i>
+          </div>
+        </div>
       </div>
     </div>
   )

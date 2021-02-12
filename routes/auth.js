@@ -8,9 +8,18 @@ router.post(
   '/singup',
   [
     check('email', 'Incorrect email').isEmail(),
-    check('password', 'Minimum password length 6 characters').isLength({
-      min: 6,
-    }),
+    check('confirmPassword', 'Minimum password length 6 characters')
+      .trim()
+      .isLength({
+        min: 6,
+      })
+      .custom(async (confirmPassword, { req }) => {
+        const { password } = req.body
+
+        if (password !== confirmPassword) {
+          throw new Error('Passwords must be same')
+        }
+      }),
   ],
   authSingup
 )

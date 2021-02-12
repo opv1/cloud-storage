@@ -77,6 +77,8 @@ export const uploadFile = (dirId, file) => {
         formData.append('parent', dirId)
       }
 
+      const uploadFile = { name: file.name, progress: 0 }
+
       const response = await axios.post('/api/file/upload', formData, {
         headers: { Authorization: `Bearer ${data.token}` },
         onUploadProgress: (progressEvent) => {
@@ -91,10 +93,14 @@ export const uploadFile = (dirId, file) => {
             uploadFile.progress = Math.round(
               (progressEvent.loaded * 100) / totalLength
             )
+
+            console.log(uploadFile)
             /* dispatch(changeUploadFile(uploadFile)) */
           }
         },
       })
+
+      console.log(response)
 
       dispatch(actionCreators.addFile(response.data))
     } catch (err) {

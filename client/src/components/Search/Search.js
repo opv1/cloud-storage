@@ -19,21 +19,29 @@ const Search = () => {
     dispatch(actions.searchFile(value))
   }
 
+  const onResetSearch = () => {
+    setValue('')
+    dispatch(actions.getFiles())
+  }
+
   return (
     <div className='search'>
-      <Input
-        className='search__input'
-        onChange={handlerChange}
-        value={value}
-        name='search'
-        placeholder='Searching...'
-      />
-      <Button
+      <div className='search__block'>
+        <Input
+          className='search__input'
+          onChange={handlerChange}
+          value={value}
+          name='search'
+          placeholder='Searching...'
+        />
+        {value ? <i class='fas fa-times' onClick={onResetSearch}></i> : null}
+      </div>
+      {/*       <Button
         className='search__button'
         onClick={onSearchFile}
         name='Search'
         disabled={loading}
-      />
+      /> */}
     </div>
   )
 }

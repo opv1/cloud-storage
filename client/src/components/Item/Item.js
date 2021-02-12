@@ -33,15 +33,12 @@ const File = ({ file }) => {
         {file.type === 'dir' ? (
           <i className='fas fa-folder-open'></i>
         ) : (
-          <i className='fas fa-file'></i>
+          <i className='fas fa-file' onClick={(e) => onDownloadFile(e)}></i>
         )}
       </div>
-      <span className='item__name'>{file.name}</span>
-      <div className='item__control'>
+      <div className='item__block'>
+        <span className='item__name'>{file.name}</span>
         <i className='fas fa-trash-alt' onClick={(e) => onDeleteFile(e)}></i>
-        {file.type !== 'dir' && (
-          <i className='fas fa-download' onClick={(e) => onDownloadFile(e)}></i>
-        )}
       </div>
     </div>
   )

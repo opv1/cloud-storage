@@ -35,7 +35,7 @@ const Storage = () => {
     e.stopPropagation()
 
     let files = [...e.dataTransfer.files]
-    files.forEach((file) => dispatch(actions.uploadFile(file, currentDir)))
+    files.forEach((file) => dispatch(actions.uploadFile(currentDir, file)))
 
     setDragEnter(false)
   }

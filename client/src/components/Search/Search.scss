@@ -1,6 +1,21 @@
 .search {
-  &__input {
+  display: flex;
+
+  &__block {
+    display: flex;
+    align-items: center;
+    position: relative;
     margin-right: 0.5rem;
+
+    i {
+      cursor: pointer;
+      position: absolute;
+      top: 7px;
+      right: 11px;
+    }
+  }
+
+  &__input {
     padding: 5px;
   }
 

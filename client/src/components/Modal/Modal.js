@@ -13,9 +13,15 @@ const Modal = () => {
 
   const dispatch = useDispatch()
 
+  const handlerClick = (e) => {
+    if (e.target.classList.contains('modal')) {
+      dispatch(actionCreators.closeModal())
+    }
+  }
+
   if (type === 'create') {
     return (
-      <div className='modal'>
+      <div className='modal' onClick={handlerClick}>
         <div className='modal__content'>
           <div className='modal__header'>
             <span className='modal__title'>Create new folder</span>
@@ -46,7 +52,7 @@ const Modal = () => {
 
   if (type === 'confirm') {
     return (
-      <div className='modal'>
+      <div className='modal' onClick={handlerClick}>
         <div className='modal__content'>
           <div className='modal__header'>
             <span className='modal__title'>Exactly remove?</span>

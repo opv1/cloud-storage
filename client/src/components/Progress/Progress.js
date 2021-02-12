@@ -1,10 +1,13 @@
 import React from 'react'
 import './Progress.scss'
 
-const Progress = () => {
+const Progress = ({ file }) => {
+  const styles = {}
+
   return (
-    <div className='progress'>
-      <span className='progress__status'>progress</span>
+    <div className='progress' style={{ opacity: '1' }}>
+      <div className='progress__bar'></div>
+      <div className='progress__percent'>50%</div>
     </div>
   )
 }

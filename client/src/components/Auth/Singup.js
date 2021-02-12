@@ -8,6 +8,7 @@ const Singup = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
   })
 
   const { loading } = useSelector((state) => state.app)
@@ -26,7 +27,7 @@ const Singup = () => {
   return (
     <div className='auth'>
       <div className='auth__container'>
-        <span className='auth__brand'>Singup Form</span>
+        <span className='auth__title'>Singup Form</span>
         <form className='auth__form'>
           <div className='auth__block'>
             <Label className='auth__label' htmlFor='email' name='Email' />
@@ -48,15 +49,15 @@ const Singup = () => {
               name='password'
               placeholder='******'
             />
-            {/* <Label htmlFor='password' name='Repeat password' />
+            <Label htmlFor='confirmPassword' name='Confirm password' />
             <Input
               onChange={handlerChange}
-              id='password'
+              id='confirmPassword'
               type='password'
-              value={form.password}
-              name='password'
+              value={form.confirmPassword}
+              name='confirmPassword'
               placeholder='******'
-            /> */}
+            />
           </div>
           <Button
             className='auth__button'
