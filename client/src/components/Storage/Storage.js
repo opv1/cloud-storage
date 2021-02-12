@@ -8,37 +8,21 @@ const Storage = () => {
   const { view } = useSelector((state) => state.app)
   const { files } = useSelector((state) => state.file)
 
-  const cls = ['storage']
-  const styles = {}
-
-  if (view === 'list') {
-    cls.push('storage_list')
-  }
-
-  if (view === 'table') {
-    cls.push('storage_table')
-  }
-
-  if (files.length === 0) {
-    styles.justifyContent = 'center'
-    styles.alignItems = 'center'
-  }
-
   if (view === 'list') {
     return (
-      <div className={cls.join(' ')} style={styles}>
-        <div className='storage__header'>
-          <div className='storage__name'>Name</div>
-          <div className='storage__date'>Date</div>
-          <div className='storage__size'>Size</div>
+      <div className='storage storage_list'>
+        <div className='storage__header_list'>
+          <div className='storage__name_list'>Name</div>
+          <div className='storage__date_list'>Date</div>
+          <div className='storage__size_list'>Size</div>
         </div>
-        <TransitionGroup className='storage__container'>
+        <TransitionGroup className='storage__container_list'>
           {files.length !== 0 ? (
             files.map((file) => {
               return <File key={file._id} file={file} />
             })
           ) : (
-            <div className='storage__empty'>Files not found</div>
+            <div className='storage__empty_list'>Files not found</div>
           )}
         </TransitionGroup>
       </div>
@@ -47,11 +31,11 @@ const Storage = () => {
 
   if (view === 'table') {
     return (
-      <div className={cls.join(' ')} style={styles}>
+      <div className='storage storage_table'>
         {files.length !== 0 ? (
           files.map((file) => <File key={file._id} file={file} />)
         ) : (
-          <div className='storage__empty'>Files not found</div>
+          <div className='storage__empty_table'>Files not found</div>
         )}
       </div>
     )
