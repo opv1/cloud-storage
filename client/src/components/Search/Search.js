@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import actions from '../../store/actions/index'
-import { Input } from '../UI/index'
+import { Input, Icon } from '../UI/index'
 import './Search.scss'
 
 const Search = () => {
@@ -44,7 +44,7 @@ const Search = () => {
           placeholder='Searching...'
         />
         {value ? (
-          <i className='fas fa-times' onClick={onResetSearch}></i>
+          <Icon className='fas fa-times' onClick={onResetSearch} />
         ) : null}
       </div>
     </div>

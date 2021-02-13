@@ -41,6 +41,8 @@ export const getFiles = (dirId, sortType) => {
 export const createDir = (dirId, name) => {
   return async (dispatch) => {
     try {
+      dispatch(actionCreators.setLoading())
+
       const { getItem } = useStorage()
 
       const data = getItem('cloudStorage')
@@ -58,6 +60,7 @@ export const createDir = (dirId, name) => {
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.closeModal())
+      dispatch(actionCreators.setLoading())
     }
   }
 }
@@ -144,6 +147,8 @@ export const downloadFile = (file) => {
 export const deleteFile = (file) => {
   return async (dispatch) => {
     try {
+      dispatch(actionCreators.setLoading())
+
       const { getItem } = useStorage()
 
       const data = getItem('cloudStorage')
@@ -159,6 +164,7 @@ export const deleteFile = (file) => {
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.closeModal())
+      dispatch(actionCreators.setLoading())
     }
   }
 }

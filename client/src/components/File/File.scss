@@ -16,7 +16,10 @@
     align-items: center;
     grid-template-columns: 1fr 4fr repeat(4, 1fr);
     border-bottom: 1px solid #696969;
-    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 
   &__image_list {
@@ -25,6 +28,24 @@
 
     i {
       margin: 1rem;
+    }
+  }
+
+  &__name_list {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__icons_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-start: 4;
+
+    i {
+      justify-self: center;
+      cursor: pointer;
+      font-size: 1.1rem;
     }
   }
 

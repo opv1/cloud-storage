@@ -44,6 +44,14 @@
     align-content: flex-start;
   }
 
+  &__container_table {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+
   &__empty_table {
     display: flex;
     align-items: center;

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
 import actionCreators from '../../store/actions/actionCreators/index'
-import { Button, Label, Input } from '../UI/index'
+import { Button, Label, Input, Icon } from '../UI/index'
 import './Panel.scss'
 
 const Panel = () => {
-  const [sortType, setSortType] = useState('type')
+  const [sortType, setSortType] = useState('date')
 
+  const { view } = useSelector((state) => state.app)
   const { currentDir, stack } = useSelector((state) => state.file)
 
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ const Panel = () => {
 
   const onUploadFile = (e) => {
     const files = [...e.target.files]
-    files.forEach((file) => dispatch(actions.uploadFile(file, currentDir)))
+    files.forEach((file) => dispatch(actions.uploadFile(currentDir, file)))
   }
 
   useEffect(() => {
@@ -60,22 +61,24 @@ const Panel = () => {
             onChange={(e) => setSortType(e.target.value)}
             value={sortType}
           >
+            <option value='date'>Date</option>
             <option value='type'>Type</option>
             <option value='name'>Name</option>
-            <option value='date'>Date</option>
           </select>
         </div>
         <div className='panel__views'>
           <span>View files:</span>
           <div className='panel__icons'>
-            <i
+            <Icon
               className='fas fa-list'
               onClick={() => dispatch(actionCreators.setView('list'))}
-            ></i>
-            <i
+              active={view === 'list'}
+            />
+            <Icon
               className='fas fa-table'
               onClick={() => dispatch(actionCreators.setView('table'))}
-            ></i>
+              active={view === 'table'}
+            />
           </div>
         </div>
       </div>

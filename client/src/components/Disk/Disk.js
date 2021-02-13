@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
-import { Panel, Progress, Loader, Storage } from '../index'
+import { Panel, Progress, Storage } from '../index'
 import './Disk.scss'
 
 const Disk = () => {
   const [dragEnter, setDragEnter] = useState(false)
 
-  const { loading } = useSelector((state) => state.app)
   const { currentDir } = useSelector((state) => state.file)
 
   const dispatch = useDispatch()
@@ -51,7 +50,7 @@ const Disk = () => {
         <div className='disk__container'>
           <Panel />
           <Progress />
-          {loading ? <Loader /> : <Storage />}
+          <Storage />
         </div>
       ) : (
         <div

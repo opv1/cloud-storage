@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
 import actionCreators from '../../store/actions/actionCreators/index'
-import { Input, Button } from '../UI/index'
+import { Input, Button, Icon } from '../UI/index'
 import './Modal.scss'
 
 const Modal = () => {
   const [value, setValue] = useState('')
 
+  const { loading } = useSelector((state) => state.app)
   const { currentDir, file } = useSelector((state) => state.file)
   const { type } = useSelector((state) => state.modal)
 
@@ -25,10 +26,10 @@ const Modal = () => {
         <div className='modal__content'>
           <div className='modal__header'>
             <span className='modal__title'>Create new folder</span>
-            <i
+            <Icon
               className='fas fa-window-close'
               onClick={() => dispatch(actionCreators.closeModal())}
-            ></i>
+            />
           </div>
           <div className='modal__block'>
             <Input
@@ -42,7 +43,7 @@ const Modal = () => {
               className='modal__button'
               onClick={() => dispatch(actions.createDir(currentDir, value))}
               name='Create'
-              disabled={!value}
+              disabled={!value || loading}
             />
           </div>
         </div>
@@ -56,16 +57,17 @@ const Modal = () => {
         <div className='modal__content'>
           <div className='modal__header'>
             <span className='modal__title'>Exactly remove?</span>
-            <i
+            <Icon
               className='fas fa-window-close'
               onClick={() => dispatch(actionCreators.closeModal())}
-            ></i>
+            />
           </div>
           <div className='modal__block'>
             <Button
               className='modal__button'
               onClick={() => dispatch(actions.deleteFile(file))}
               name='Yep'
+              disabled={loading}
             />
           </div>
         </div>
