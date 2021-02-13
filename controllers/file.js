@@ -19,7 +19,7 @@ export const createDir = async (req, res) => {
     } else {
       file.path = `${parentFile.path}\\${file.name}`
 
-      await fileService.createDir(file)
+      await fileService.createDir(req, file)
 
       parentFile.childs.push(file._id)
 
@@ -55,11 +55,9 @@ export const uploadFile = async (req, res) => {
     let path = ''
 
     if (parent) {
-      path = `${config.get('FILE_PATH')}\\${user._id}\\${parent.path}\\${
-        file.name
-      }`
+      path = `${req.filePath}\\${user._id}\\${parent.path}\\${file.name}`
     } else {
-      path = `${config.get('FILE_PATH')}\\${user._id}\\${file.name}`
+      path = `${req.filePath}\\${user._id}\\${file.name}`
     }
 
     if (fs.existsSync(path)) {
@@ -140,7 +138,7 @@ export const downloadFile = async (req, res) => {
   try {
     const file = await File.findOne({ _id: req.query.id, user: req.user.id })
 
-    const path = fileService.getPath(file)
+    const path = fileService.getPath(req, file)
 
     if (fs.existsSync(path)) {
       return res.download(path, file.name)
@@ -176,7 +174,7 @@ export const deleteFile = async (req, res) => {
       return res.status(400).json({ message: 'File not found' })
     }
 
-    fileService.deleteFile(file)
+    fileService.deleteFile(req, file)
 
     await file.remove()
 

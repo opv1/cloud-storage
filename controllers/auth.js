@@ -37,7 +37,7 @@ export const authSingup = async (req, res) => {
 
     await user.save()
 
-    await fileService.createDir(new File({ user: user.id, name: '' }))
+    await fileService.createDir(req, new File({ user: user.id, name: '' }))
 
     return res.status(201).json({ message: 'User created' })
   } catch (err) {
