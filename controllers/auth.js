@@ -71,9 +71,13 @@ export const authLogin = async (req, res) => {
       return res.status(400).json({ message: 'Invalid password' })
     }
 
-    const token = jwt.sign({ id: user.id }, config.get('SECRET_KEY'), {
-      expiresIn: '1h',
-    })
+    const token = jwt.sign(
+      { id: user.id },
+      process.env.SECRET_KEY || config.get('SECRET_KEY'),
+      {
+        expiresIn: '1h',
+      }
+    )
 
     return res.json({
       token,

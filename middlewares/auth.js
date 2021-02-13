@@ -13,7 +13,10 @@ export default (req, res, next) => {
       return res.status(401).json({ message: 'No authorization' })
     }
 
-    const decoded = jwt.verify(token, config.get('SECRET_KEY'))
+    const decoded = jwt.verify(
+      token,
+      process.env.SECRET_KEY || config.get('SECRET_KEY')
+    )
 
     req.user = decoded
 

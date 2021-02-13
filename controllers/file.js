@@ -1,5 +1,4 @@
 import fs from 'fs'
-import config from 'config'
 import User from '../models/User.js'
 import File from '../models/File.js'
 import { fileService } from '../services/file.js'
@@ -15,7 +14,7 @@ export const createDir = async (req, res) => {
     if (!parentFile) {
       file.path = name
 
-      await fileService.createDir(file)
+      await fileService.createDir(req, file)
     } else {
       file.path = `${parentFile.path}\\${file.name}`
 
