@@ -36,7 +36,7 @@ export const createDir = async (req, res) => {
 
 export const uploadFile = async (req, res) => {
   try {
-    const file = req.files.file
+    const { file } = req.files
 
     const parent = await File.findOne({
       _id: req.body.parent,

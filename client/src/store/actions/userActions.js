@@ -13,6 +13,7 @@ export const singupUser = (form) => {
 
       dispatch(actionCreators.showAlert(response.data.message))
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.setLoading())
@@ -35,6 +36,7 @@ export const loginUser = (form) => {
 
       setItem('cloudStorage', response.data)
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.setLoading())

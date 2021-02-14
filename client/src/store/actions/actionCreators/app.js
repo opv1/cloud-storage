@@ -1,4 +1,9 @@
-import { SET_LOADING, SET_VIEW, SET_PROGRESS } from '../../constants'
+import {
+  SET_LOADING,
+  SET_VIEW,
+  SET_PROGRESS,
+  SET_PERCENTAGE,
+} from '../../constants'
 
 export const setLoading = () => ({
   type: SET_LOADING,
@@ -11,4 +16,9 @@ export const setView = (view) => ({
 
 export const setProgress = () => ({
   type: SET_PROGRESS,
+})
+
+export const setPercentage = (percent) => ({
+  type: SET_PERCENTAGE,
+  payload: percent,
 })

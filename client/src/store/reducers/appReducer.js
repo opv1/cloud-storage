@@ -1,9 +1,15 @@
-import { SET_LOADING, SET_VIEW, SET_PROGRESS } from '../constants'
+import {
+  SET_LOADING,
+  SET_VIEW,
+  SET_PROGRESS,
+  SET_PERCENTAGE,
+} from '../constants'
 
 const initialState = {
   loading: false,
   view: 'list',
   progress: false,
+  percentage: 0,
 }
 
 const appReducer = (state = initialState, { type, payload }) => {
@@ -22,6 +28,11 @@ const appReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         progress: !state.progress,
+      }
+    case SET_PERCENTAGE:
+      return {
+        ...state,
+        percentage: payload,
       }
     default:
       return state

@@ -31,6 +31,7 @@ export const getFiles = (dirId, sortType) => {
 
       dispatch(actionCreators.setFiles(response.data))
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.setLoading())
@@ -57,6 +58,7 @@ export const createDir = (dirId, name) => {
 
       dispatch(actionCreators.addFile(response.data))
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.closeModal())
@@ -80,33 +82,20 @@ export const uploadFile = (dirId, file) => {
         formData.append('parent', dirId)
       }
 
-      const uploadFile = { name: file.name, progress: 0 }
-
       const response = await axios.post('/api/file/upload', formData, {
         headers: { Authorization: `Bearer ${data.token}` },
-        onUploadProgress: (progressEvent) => {
-          const totalLength = progressEvent.lengthComputable
-            ? progressEvent.total
-            : progressEvent.target.getResponseHeader('content-length') ||
-              progressEvent.target.getResponseHeader(
-                'x-decompressed-content-length'
-              )
+        /*         onUploadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent
 
-          if (totalLength) {
-            uploadFile.progress = Math.round(
-              (progressEvent.loaded * 100) / totalLength
-            )
+          let percent = parseInt(Math.round(loaded * 100) / total)
 
-            console.log(uploadFile)
-            /* dispatch(changeUploadFile(uploadFile)) */
-          }
-        },
+          dispatch(actionCreators.setPercentage(percent))
+        }, */
       })
-
-      console.log(response)
 
       dispatch(actionCreators.addFile(response.data))
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     }
   }
@@ -139,6 +128,7 @@ export const downloadFile = (file) => {
         link.remove()
       }
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     }
   }
@@ -161,6 +151,7 @@ export const deleteFile = (file) => {
 
       dispatch(actionCreators.showAlert(response.data.message))
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.closeModal())
@@ -184,6 +175,7 @@ export const searchFile = (search) => {
 
       dispatch(actionCreators.setFiles(response.data))
     } catch (err) {
+      console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
     } finally {
       dispatch(actionCreators.setLoading())
