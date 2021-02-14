@@ -39,7 +39,7 @@ const Panel = () => {
         />
         <Button
           className='panel__button'
-          onClick={() => dispatch(actionCreators.setModal('create'))}
+          onClick={() => dispatch(actionCreators.setModal('createFolder'))}
           name='Create folder'
         />
       </div>
@@ -71,13 +71,13 @@ const Panel = () => {
           <div className='panel__icons'>
             <Icon
               className='fas fa-list'
-              onClick={() => dispatch(actionCreators.setView('list'))}
-              active={view === 'list'}
+              onClick={() => dispatch(actionCreators.setView('typeList'))}
+              active={view === 'typeList'}
             />
             <Icon
               className='fas fa-table'
-              onClick={() => dispatch(actionCreators.setView('table'))}
-              active={view === 'table'}
+              onClick={() => dispatch(actionCreators.setView('typeTable'))}
+              active={view === 'typeTable'}
             />
           </div>
         </div>

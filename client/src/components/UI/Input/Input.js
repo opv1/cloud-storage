@@ -10,6 +10,7 @@ const Input = ({
   name,
   placeholder,
   multiple,
+  accept,
 }) => {
   const cls = ['input']
 
@@ -27,6 +28,7 @@ const Input = ({
       name={name}
       placeholder={placeholder}
       multiple={multiple}
+      accept={accept}
     />
   )
 }

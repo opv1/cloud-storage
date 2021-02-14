@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   loading: false,
-  view: 'list',
+  view: 'typeList',
   progress: false,
   percentage: 0,
 }

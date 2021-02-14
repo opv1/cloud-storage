@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER } from '../../constants'
+import { LOGIN_USER, LOGOUT_USER, SET_AVATAR } from '../../constants'
 
 export const loginUser = (data) => ({
   type: LOGIN_USER,
@@ -7,4 +7,9 @@ export const loginUser = (data) => ({
 
 export const logoutUser = () => ({
   type: LOGOUT_USER,
+})
+
+export const setAvatar = (avatar) => ({
+  type: SET_AVATAR,
+  payload: avatar,
 })

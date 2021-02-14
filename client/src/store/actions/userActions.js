@@ -53,3 +53,53 @@ export const logoutUser = () => {
     removeItem('cloudStorage')
   }
 }
+
+export const uploadAvatar = (file) => {
+  return async (dispatch) => {
+    try {
+      const { setItem, getItem } = useStorage()
+
+      const data = getItem('cloudStorage')
+
+      const formData = new FormData()
+
+      formData.append('file', file)
+
+      const response = await axios.post('/api/file/avatar', formData, {
+        headers: { Authorization: `Bearer ${data.token}` },
+      })
+
+      dispatch(actionCreators.setAvatar(response.data.user.avatar))
+
+      data.user = response.data.user
+
+      setItem('cloudStorage', data)
+    } catch (err) {
+      console.log(err)
+      dispatch(actionCreators.showAlert(err.response.data.message))
+    }
+  }
+}
+
+export const deleteAvatar = () => {
+  return async (dispatch) => {
+    try {
+      const { setItem, getItem } = useStorage()
+
+      const data = getItem('cloudStorage')
+
+      const response = await axios.delete('/api/file/avatar', {
+        headers: { Authorization: `Bearer ${data.token}` },
+      })
+
+      dispatch(actionCreators.setAvatar(response.data.user.avatar))
+
+      data.user = response.data.user
+
+      setItem('cloudStorage', data)
+    } catch (err) {
+      console.log(err)
+      dispatch(actionCreators.showAlert(err.response.data.message))
+    }
+  }
+}

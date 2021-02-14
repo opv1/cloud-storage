@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER } from '../constants'
+import { LOGIN_USER, LOGOUT_USER, SET_AVATAR } from '../constants'
 
 const initialState = {
   token: null,
@@ -18,6 +18,11 @@ const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         token: null,
         user: null,
+      }
+    case SET_AVATAR:
+      return {
+        ...state,
+        user: { ...state.user, avatar: payload },
       }
     default:
       return state

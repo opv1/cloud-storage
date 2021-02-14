@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actionCreators from '../../store/actions/actionCreators/index'
+import { Icon } from '../UI/index'
 import './Alert.scss'
 
 const Alert = () => {
@@ -20,10 +21,10 @@ const Alert = () => {
   return (
     <div className='alert'>
       <span className='alert__message'>{message}</span>
-      <i
+      <Icon
         className='fas fa-times'
         onClick={() => dispatch(actionCreators.hideAlert())}
-      ></i>
+      />
     </div>
   )
 }
