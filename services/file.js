@@ -1,6 +1,10 @@
 import fs from 'fs'
 
 class FileService {
+  getPath(req, file) {
+    return req.filePath + '\\' + file.user + '\\' + file.path
+  }
+
   createDir(req, file) {
     const filePath = this.getPath(req, file)
 
@@ -17,10 +21,6 @@ class FileService {
         return reject({ message: 'File error' })
       }
     })
-  }
-
-  getPath(req, file) {
-    return req.filePath + '\\' + file.user + '\\' + file.path
   }
 
   deleteFile(req, file) {

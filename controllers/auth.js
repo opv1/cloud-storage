@@ -84,6 +84,7 @@ export const authLogin = async (req, res) => {
       user: {
         id: user.id,
         email: user.email,
+        avatar: user.avatar,
         diskSpace: user.diskSpace,
         usedSpace: user.usedSpace,
       },

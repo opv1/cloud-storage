@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { v4 as uuidv4 } from 'uuid'
 import User from '../models/User.js'
 import File from '../models/File.js'
 import { fileService } from '../services/file.js'
@@ -93,6 +94,35 @@ export const uploadFile = async (req, res) => {
   }
 }
 
+export const uploadAvatar = async (req, res) => {
+  try {
+    const file = req.files.file
+
+    const user = await User.findById(req.user.id)
+
+    const avatarName = uuidv4() + '.jpg'
+
+    file.mv(`${req.staticPath}\\${avatarName}`)
+
+    user.avatar = avatarName
+
+    await user.save()
+
+    return res.json({
+      user: {
+        id: user.id,
+        email: user.email,
+        avatar: user.avatar,
+        diskSpace: user.diskSpace,
+        usedSpace: user.usedSpace,
+      },
+    })
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json({ message: 'Upload avatar error' })
+  }
+}
+
 export const getFiles = async (req, res) => {
   try {
     const { sort } = req.query
@@ -181,5 +211,30 @@ export const deleteFile = async (req, res) => {
   } catch (err) {
     console.log(err)
     return res.status(400).json({ message: 'Folder is not empty' })
+  }
+}
+
+export const deleteAvatar = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+
+    fs.unlinkSync(`${req.staticPath}\\${user.avatar}`)
+
+    user.avatar = null
+
+    await user.save()
+
+    return res.json({
+      user: {
+        id: user.id,
+        email: user.email,
+        avatar: user.avatar,
+        diskSpace: user.diskSpace,
+        usedSpace: user.usedSpace,
+      },
+    })
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json({ message: 'Delete avatar error' })
   }
 }
