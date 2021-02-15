@@ -3,19 +3,25 @@
   flex-wrap: wrap;
   justify-content: space-around;
 
+  &__search {
+    display: none;
+  }
+
   &__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 1rem;
   }
 
   &__upload {
     display: flex;
     flex-direction: column;
-    margin: 0 1rem;
+    margin: 1rem;
     border: 1px solid #696969;
     border-radius: 3px;
     padding: 1rem;
+    max-width: 300px;
   }
 
   &__label {
@@ -30,6 +36,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin: 1rem;
   }
 
   &__sort {

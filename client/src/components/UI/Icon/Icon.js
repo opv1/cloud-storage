@@ -6,11 +6,11 @@ const Icon = ({ className, onClick, active }) => {
   const cls = [name]
 
   if (className) {
-    cls.push(className)
+    cls.unshift(className)
   }
 
   if (active) {
-    cls.push(`${name}_active`)
+    cls.unshift(`${name}_active`)
   }
 
   return <i className={cls.join(' ')} onClick={onClick}></i>

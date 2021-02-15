@@ -15,6 +15,19 @@
     color: #fff;
   }
 
+  &__search {
+    display: flex;
+  }
+
+  &__nav {
+    display: flex;
+  }
+
+  &__bars {
+    font-size: 1.5rem;
+    color: #fff;
+  }
+
   &__list {
     display: flex;
     list-style: none;
@@ -37,6 +50,32 @@
 
     &_active {
       border-bottom: 2px solid #fff;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+
+    &__list {
+      display: none;
+    }
+
+    &__bars {
+      display: inline-block;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    &__list {
+      display: flex;
+    }
+
+    &__bars {
+      display: none;
     }
   }
 }

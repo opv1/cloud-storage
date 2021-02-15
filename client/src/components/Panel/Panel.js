@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
 import actionCreators from '../../store/actions/actionCreators/index'
+import { Search } from '../index'
 import { Button, Label, Input, Icon } from '../UI/index'
 import './Panel.scss'
 
@@ -30,6 +31,7 @@ const Panel = () => {
 
   return (
     <div className='panel'>
+      <Search className='panel__search' />
       <div className='panel__buttons'>
         <Button
           className='panel__button'

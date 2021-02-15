@@ -5,7 +5,7 @@ const Button = ({ className, onClick, name, disabled }) => {
   const cls = ['button']
 
   if (className) {
-    cls.push(className)
+    cls.unshift(className)
   }
 
   return (

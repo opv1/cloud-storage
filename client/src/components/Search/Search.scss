@@ -1,6 +1,4 @@
 .search {
-  display: flex;
-
   &__block {
     position: relative;
     display: flex;
@@ -21,5 +19,15 @@
 
   &__button {
     padding: 5px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .panel__search {
+    display: flex;
+  }
+
+  .navbar__search {
+    display: none;
   }
 }

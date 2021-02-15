@@ -4,11 +4,17 @@ import actions from '../../store/actions/index'
 import { Input, Icon } from '../UI/index'
 import './Search.scss'
 
-const Search = () => {
+const Search = ({ className }) => {
   const [value, setValue] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(false)
 
   const dispatch = useDispatch()
+
+  const cls = ['search']
+
+  if (className) {
+    cls.unshift(className)
+  }
 
   const handlerChange = (e) => {
     setValue(e.target.value)
@@ -34,7 +40,7 @@ const Search = () => {
   }
 
   return (
-    <div className='search'>
+    <div className={cls.join(' ')}>
       <div className='search__block'>
         <Input
           className='search__input'

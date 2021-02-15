@@ -5,7 +5,7 @@ const Label = ({ className, htmlFor, name }) => {
   const cls = ['label']
 
   if (className) {
-    cls.push(className)
+    cls.unshift(className)
   }
 
   return (

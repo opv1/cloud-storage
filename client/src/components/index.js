@@ -10,6 +10,7 @@ import Panel from './Panel/Panel'
 import Profile from './Profile/Profile'
 import Progress from './Progress/Progress'
 import Search from './Search/Search'
+import Sidedrawer from './Sidedrawer/Sidedrawer'
 import Storage from './Storage/Storage'
 
 export {
@@ -25,5 +26,6 @@ export {
   Panel,
   Progress,
   Search,
+  Sidedrawer,
   Storage,
 }

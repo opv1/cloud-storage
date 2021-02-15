@@ -15,7 +15,7 @@ const Input = ({
   const cls = ['input']
 
   if (className) {
-    cls.push(className)
+    cls.unshift(className)
   }
 
   return (

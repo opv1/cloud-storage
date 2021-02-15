@@ -58,6 +58,7 @@ const Profile = () => {
             className='profile__button'
             onClick={() => dispatch(actions.deleteAvatar())}
             name='Delete avatar'
+            disabled={!user.avatar}
           />
         </div>
         <div className='profile__user'>
