@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
 import { sizeFormat } from '../../utils/index'
 import { Input, Label, Button } from '../UI/index'
-import { URL } from '../../store/constants'
+import { BASE_URL } from '../../store/constants'
 import defaultAvatar from '../../assets/avatar.svg'
 import './Profile.scss'
 
@@ -13,7 +13,7 @@ const Profile = () => {
   const dispatch = useDispatch()
 
   const avatarSrc = user.avatar
-    ? `${process.env.URL || URL + user.avatar}`
+    ? `${process.env.BASE_URL || BASE_URL + user.avatar}`
     : defaultAvatar
 
   const handlerChange = (e) => {
