@@ -8,3 +8,9 @@ body {
   font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
   background-color: #dddfe6;
 }
+
+@media screen and (max-width: 425px) {
+  html {
+    font-size: 14px;
+  }
+}

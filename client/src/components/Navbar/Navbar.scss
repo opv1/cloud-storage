@@ -17,10 +17,12 @@
 
   &__search {
     display: flex;
+    align-items: center;
   }
 
   &__nav {
     display: flex;
+    align-items: center;
   }
 
   &__bars {
@@ -50,6 +52,14 @@
 
     &_active {
       border-bottom: 2px solid #fff;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navbar {
+    &__search {
+      display: none;
     }
   }
 }

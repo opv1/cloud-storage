@@ -11,7 +11,12 @@
   }
 
   &__image_list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     justify-self: center;
+    grid-column-start: 1;
+    min-width: 80px;
     font-size: 3rem;
 
     i {
@@ -22,6 +27,7 @@
   &__name_list {
     display: flex;
     align-items: center;
+    grid-column-start: 2;
     height: 100%;
   }
 
@@ -32,12 +38,16 @@
 
     i {
       justify-self: center;
+      margin: 0.5rem;
       font-size: 1.1rem;
       cursor: pointer;
     }
   }
 
   &__date_list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     justify-self: center;
     grid-column-start: 5;
   }
@@ -96,5 +106,70 @@
     font-size: 1.2rem;
     text-align: center;
     text-overflow: ellipsis;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .file {
+    &__date_list {
+      font-size: 0.9rem;
+    }
+
+    &__size_list {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .file {
+    &_list {
+      grid-template-columns: 1fr 2fr repeat(3, 1fr);
+    }
+
+    &__icons_list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      grid-column-start: 3;
+    }
+
+    &__date_list {
+      grid-column-start: 4;
+    }
+
+    &__size_list {
+      grid-column-start: 5;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .file {
+    &_list {
+      grid-template-columns: 2fr repeat(3, 1fr);
+      height: 70px;
+    }
+
+    &__image_list {
+      display: none;
+    }
+
+    &__name_list {
+      justify-self: center;
+      grid-column-start: 1;
+    }
+
+    &__icons_list {
+      grid-column-start: 2;
+    }
+
+    &__date_list {
+      grid-column-start: 3;
+    }
+
+    &__size_list {
+      grid-column-start: 4;
+    }
   }
 }

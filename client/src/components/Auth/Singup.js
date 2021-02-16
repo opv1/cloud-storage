@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
-import { Input, Label, Button } from '../UI/index'
+import { Label, Input, Button } from '../UI/index'
 import './Auth.scss'
 
 const Singup = () => {

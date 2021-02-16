@@ -1,5 +1,5 @@
 import React from 'react'
-import { File, Loader } from '../../index'
+import { Loader, File } from '../../index'
 
 const StorageTypeList = ({ files, loading }) => {
   return (

@@ -11,6 +11,8 @@ const Input = ({
   placeholder,
   multiple,
   accept,
+  minLength,
+  maxLength,
 }) => {
   const cls = ['input']
 
@@ -29,6 +31,8 @@ const Input = ({
       placeholder={placeholder}
       multiple={multiple}
       accept={accept}
+      minLength={minLength}
+      maxLength={maxLength}
     />
   )
 }

@@ -22,7 +22,7 @@ const Alert = () => {
     <div className='alert'>
       <span className='alert__message'>{message}</span>
       <Icon
-        className='fas fa-times'
+        className='alert__icon fas fa-times'
         onClick={() => dispatch(actionCreators.hideAlert())}
       />
     </div>

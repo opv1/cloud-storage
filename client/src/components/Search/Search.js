@@ -50,7 +50,7 @@ const Search = ({ className }) => {
           placeholder='Searching...'
         />
         {value ? (
-          <Icon className='fas fa-times' onClick={onResetSearch} />
+          <Icon className='search__icon fas fa-times' onClick={onResetSearch} />
         ) : null}
       </div>
     </div>

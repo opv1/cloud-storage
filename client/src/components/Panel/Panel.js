@@ -72,12 +72,12 @@ const Panel = () => {
           <span>View files:</span>
           <div className='panel__icons'>
             <Icon
-              className='fas fa-list'
+              className='panel__icon fas fa-list'
               onClick={() => dispatch(actionCreators.setView('typeList'))}
               active={view === 'typeList'}
             />
             <Icon
-              className='fas fa-table'
+              className='panel__icon fas fa-table'
               onClick={() => dispatch(actionCreators.setView('typeTable'))}
               active={view === 'typeTable'}
             />

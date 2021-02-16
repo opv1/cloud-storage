@@ -1,7 +1,7 @@
 .alert {
   position: absolute;
-  right: 20px;
-  top: 90px;
+  right: 0;
+  top: 60px;
   z-index: 100;
   display: flex;
   align-items: center;
@@ -14,7 +14,7 @@
     margin-right: 1rem;
   }
 
-  i {
+  &__icon {
     cursor: pointer;
   }
 }
