@@ -104,6 +104,8 @@ export const uploadAvatar = async (req, res) => {
 
     file.mv(`${req.staticPath}\\${avatarName}`)
 
+    console.log(`${req.staticPath}\\${avatarName}`)
+
     user.avatar = avatarName
 
     await user.save()
