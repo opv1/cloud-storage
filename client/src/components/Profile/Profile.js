@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../store/actions/index'
 import { sizeFormat } from '../../utils/index'
 import { Label, Input, Button } from '../UI/index'
-import { BASE_URL } from '../../store/constants'
 import defaultAvatar from '../../assets/avatar.svg'
 import './Profile.scss'
 
