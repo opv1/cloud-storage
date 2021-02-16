@@ -12,9 +12,7 @@ const Profile = () => {
 
   const dispatch = useDispatch()
 
-  const avatarSrc = user.avatar
-    ? `${process.env.BASE_URL || BASE_URL + user.avatar}`
-    : defaultAvatar
+  const avatarSrc = user.avatar ? `${'/' + user.avatar}` : defaultAvatar
 
   const handlerChange = (e) => {
     const file = e.target.files[0]
