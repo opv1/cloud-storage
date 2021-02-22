@@ -1,5 +1,5 @@
 import React from 'react'
-import './Input.scss'
+import 'components/UI/Input/Input.scss'
 
 const Input = ({
   className,

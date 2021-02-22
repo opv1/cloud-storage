@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useRoutes } from './hooks/useRoutes'
-import { useStorage } from './hooks/useStorage'
-import actionCreators from './store/actions/actionCreators/index'
-import { Alert, Navbar, Modal } from './components/index'
-import './App.scss'
+import { useRoutes } from 'hooks/useRoutes'
+import { useStorage } from 'hooks/useStorage'
+import actionCreators from 'store/actions/actionCreators/index'
+import { Alert, Navbar, Modal } from 'components/index'
+import 'App.scss'
 
 function App() {
   const { alert } = useSelector((state) => state.alert)

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import alertReducer from './alertReducer'
-import appReducer from './appReducer'
-import fileReducer from './fileReducer'
-import modalReducer from './modalReducer'
-import userReducer from './userReducer'
+import alertReducer from 'store/reducers/alertReducer'
+import appReducer from 'store/reducers/appReducer'
+import fileReducer from 'store/reducers/fileReducer'
+import modalReducer from 'store/reducers/modalReducer'
+import userReducer from 'store/reducers/userReducer'
 
 export const rootReducer = combineReducers({
   alert: alertReducer,

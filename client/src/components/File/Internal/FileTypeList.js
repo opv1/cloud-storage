@@ -1,6 +1,6 @@
 import React from 'react'
-import { sizeFormat } from '../../../utils/index'
-import { Icon } from '../../UI/index'
+import { sizeFormat } from 'utils/index'
+import { Icon } from 'components/UI/index'
 
 const FileTypeList = ({ file, onOpenFolder, onDownloadFile, onDeleteFile }) => {
   return (

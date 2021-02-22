@@ -3,7 +3,7 @@ import {
   SET_VIEW,
   SET_PROGRESS,
   SET_PERCENTAGE,
-} from '../constants'
+} from 'store/constants'
 
 const initialState = {
   loading: false,

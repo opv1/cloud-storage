@@ -1,4 +1,4 @@
-import { SET_MODAL, CLOSE_MODAL } from '../../constants'
+import { SET_MODAL, CLOSE_MODAL } from 'store/constants'
 
 export const setModal = (type) => ({
   type: SET_MODAL,

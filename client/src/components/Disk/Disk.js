@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actions from '../../store/actions/index'
-import { Panel, Progress, Storage } from '../index'
-import './Disk.scss'
+import actions from 'store/actions/index'
+import { Panel, Progress, Storage } from 'components/index'
+import 'components/Disk/Disk.scss'
 
 const Disk = () => {
   const [dragEnter, setDragEnter] = useState(false)

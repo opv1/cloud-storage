@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { useStorage } from '../../hooks/useStorage'
-import actionCreators from './actionCreators/index'
+import { useStorage } from 'hooks/useStorage'
+import actionCreators from 'store/actions/actionCreators/index'
 
 export const getFiles = (dirId, sortType) => {
   return async (dispatch) => {

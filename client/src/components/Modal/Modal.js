@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actionCreators from '../../store/actions/actionCreators/index'
-import ModalConfirmDelete from './Internal/ModalConfirmDelete'
-import ModalCreateFolder from './Internal/ModalCreateFolder'
-import './Modal.scss'
+import actionCreators from 'store/actions/actionCreators/index'
+import ModalConfirmDelete from 'components/Modal/Internal/ModalConfirmDelete'
+import ModalCreateFolder from 'components/Modal/Internal/ModalCreateFolder'
+import 'components/Modal/Modal.scss'
 
 const Modal = () => {
   const { loading } = useSelector((state) => state.app)

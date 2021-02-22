@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actions from '../../store/actions/index'
-import actionCreators from '../../store/actions/actionCreators/index'
-import FileTypeList from './Internal/FileTypeList'
-import FileTypeTable from './Internal/FileTypeTable'
-import './File.scss'
+import actions from 'store/actions/index'
+import actionCreators from 'store/actions/actionCreators/index'
+import FileTypeList from 'components/File/Internal/FileTypeList'
+import FileTypeTable from 'components/File/Internal/FileTypeTable'
+import 'components/File/File.scss'
 
 const File = ({ file }) => {
   const { view } = useSelector((state) => state.app)

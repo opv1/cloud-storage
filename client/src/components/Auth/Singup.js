@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actions from '../../store/actions/index'
-import { Label, Input, Button } from '../UI/index'
-import './Auth.scss'
+import actions from 'store/actions/index'
+import { Label, Input, Button } from 'components/UI/index'
+import 'components/Auth/Auth.scss'
 
 const Singup = () => {
   const [form, setForm] = useState({

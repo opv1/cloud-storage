@@ -6,7 +6,7 @@ import {
   DELETE_FILE,
   PUSH_STACK,
   POP_STACK,
-} from '../constants'
+} from 'store/constants'
 
 const initialState = {
   currentDir: null,

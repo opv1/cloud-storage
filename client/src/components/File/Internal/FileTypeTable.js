@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from '../../UI/index'
+import { Icon } from 'components/UI/index'
 
 const FileTypeTable = ({
   file,

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import actions from '../../store/actions/index'
-import { Input, Icon } from '../UI/index'
-import './Search.scss'
+import actions from 'store/actions/index'
+import { Input, Icon } from 'components/UI/index'
+import 'components/Search/Search.scss'
 
 const Search = ({ className }) => {
   const [value, setValue] = useState('')

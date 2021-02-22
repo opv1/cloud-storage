@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER, SET_AVATAR } from '../constants'
+import { LOGIN_USER, LOGOUT_USER, SET_AVATAR } from 'store/constants'
 
 const initialState = {
   token: null,

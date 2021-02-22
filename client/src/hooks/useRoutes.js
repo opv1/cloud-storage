@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { Disk, Profile, Login, Singup } from '../components/index'
+import { Disk, Profile, Login, Singup } from 'components/index'
 
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {

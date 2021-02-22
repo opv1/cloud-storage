@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actionCreators from '../../store/actions/actionCreators/index'
-import { Icon } from '../UI/index'
-import './Alert.scss'
+import actionCreators from 'store/actions/actionCreators/index'
+import { Icon } from 'components/UI/index'
+import 'components/Alert/Alert.scss'
 
 const Alert = () => {
   const { alert, message } = useSelector((state) => state.alert)

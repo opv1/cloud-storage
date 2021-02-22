@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actions from '../../../store/actions/index'
-import actionCreators from '../../../store/actions/actionCreators/index'
-import { Icon, Input, Button } from '../../UI/index'
+import actions from 'store/actions/index'
+import actionCreators from 'store/actions/actionCreators/index'
+import { Icon, Input, Button } from 'components/UI/index'
 
 const ModalCreateFolder = ({ handlerClick, loading }) => {
   const [value, setValue] = useState('')

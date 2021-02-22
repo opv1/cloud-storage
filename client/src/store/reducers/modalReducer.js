@@ -1,4 +1,4 @@
-import { SET_MODAL, CLOSE_MODAL } from '../constants'
+import { SET_MODAL, CLOSE_MODAL } from 'store/constants'
 
 const initialState = {
   modal: false,

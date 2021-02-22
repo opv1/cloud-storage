@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import actions from '../../store/actions/index'
-import { Search, Sidedrawer } from '../index'
-import { Icon } from '../UI/index'
-import './Navbar.scss'
+import actions from 'store/actions/index'
+import { Search, Sidedrawer } from 'components/index'
+import { Icon } from 'components/UI/index'
+import 'components/Navbar/Navbar.scss'
 
 const Navbar = ({ isAuthenticated }) => {
   const [sidedrawer, setSidedrawer] = useState(false)

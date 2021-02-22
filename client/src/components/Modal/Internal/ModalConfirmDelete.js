@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actions from '../../../store/actions/index'
-import actionCreators from '../../../store/actions/actionCreators/index'
-import { Icon, Button } from '../../UI/index'
+import actions from 'store/actions/index'
+import actionCreators from 'store/actions/actionCreators/index'
+import { Icon, Button } from 'components/UI/index'
 
 const ModalConfirmDelete = ({ handlerClick, loading }) => {
   const { file } = useSelector((state) => state.file)

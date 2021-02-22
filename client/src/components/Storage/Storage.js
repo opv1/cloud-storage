@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import StorageTypeList from './Internal/StorageTypeList'
-import StorageTypeTable from './Internal/StorageTypeTable'
-import './Storage.scss'
+import StorageTypeList from 'components/Storage/Internal/StorageTypeList'
+import StorageTypeTable from 'components/Storage/Internal/StorageTypeTable'
+import 'components/Storage/Storage.scss'
 
 const Storage = () => {
   const { loading, view } = useSelector((state) => state.app)

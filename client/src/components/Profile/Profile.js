@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import actions from '../../store/actions/index'
-import { sizeFormat } from '../../utils/index'
-import { Label, Input, Button } from '../UI/index'
-import defaultAvatar from '../../assets/avatar.svg'
-import './Profile.scss'
+import actions from 'store/actions/index'
+import { sizeFormat } from 'utils/index'
+import { Label, Input, Button } from 'components/UI/index'
+import defaultAvatar from 'assets/avatar.svg'
+import 'components/Profile/Profile.scss'
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user)

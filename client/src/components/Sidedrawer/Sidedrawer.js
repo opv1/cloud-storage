@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import actions from '../../store/actions/index'
-import { Icon } from '../UI/index'
-import './Sidedrawer.scss'
+import actions from 'store/actions/index'
+import { Icon } from 'components/UI/index'
+import 'components/Sidedrawer/Sidedrawer.scss'
 
 const Sidedrawer = ({ isAuthenticated, onToggleSidedrawer }) => {
   const dispatch = useDispatch()

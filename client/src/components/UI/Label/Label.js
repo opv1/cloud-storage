@@ -1,5 +1,5 @@
 import React from 'react'
-import './Label.scss'
+import 'components/UI/Label/Label.scss'
 
 const Label = ({ className, htmlFor, name }) => {
   const cls = ['label']

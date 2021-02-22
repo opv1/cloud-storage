@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import './Progress.scss'
+import 'components/Progress/Progress.scss'
 
 const Progress = () => {
   const { progress, percentage } = useSelector((state) => state.app)

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Icon.scss'
+import 'components/UI/Icon/Icon.scss'
 
 const Icon = ({ className, onClick, active }) => {
   const name = 'icon'
