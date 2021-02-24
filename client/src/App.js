@@ -20,7 +20,7 @@ const App = () => {
   const routes = useRoutes(isAuthenticated)
 
   useEffect(() => {
-    const data = getItem('cloudStorage')
+    const data = getItem('cloud-storage')
 
     if (data && data.token) {
       dispatch(actionCreators.loginUser(data))

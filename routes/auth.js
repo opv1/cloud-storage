@@ -23,7 +23,6 @@ router.post(
   ],
   authSingup
 )
-
 router.post(
   '/login',
   [
