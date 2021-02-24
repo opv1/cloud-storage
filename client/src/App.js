@@ -6,7 +6,7 @@ import actionCreators from 'store/actions/actionCreators/index'
 import { Alert, Navbar, Modal } from 'components/index'
 import 'App.scss'
 
-function App() {
+const App = () => {
   const { alert } = useSelector((state) => state.alert)
   const { modal } = useSelector((state) => state.modal)
   const { token } = useSelector((state) => state.user)

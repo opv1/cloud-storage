@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import path from 'path'
 import config from 'config'
 import corsMiddleware from './middlewares/cors.js'
-import { filePathMiddleware, staticPathMiddleware } from './middlewares/path.js'
+import pathMiddleware from './middlewares/path.js'
 import authRoute from './routes/auth.js'
 import fileRoute from './routes/file.js'
 
@@ -13,8 +13,8 @@ const __dirname = path.resolve()
 const PORT = process.env.PORT || config.get('PORT')
 
 app.use(corsMiddleware)
-app.use(filePathMiddleware(path.resolve(__dirname, 'files')))
-app.use(staticPathMiddleware(path.resolve(__dirname, 'static')))
+app.use(pathMiddleware.filePath(path.resolve(__dirname, 'files')))
+app.use(pathMiddleware.staticPath(path.resolve(__dirname, 'static')))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('static'))

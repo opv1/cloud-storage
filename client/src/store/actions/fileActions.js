@@ -9,7 +9,7 @@ export const getFiles = (dirId, sortType) => {
 
       const { getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       let url = `/api/file/`
 
@@ -46,7 +46,7 @@ export const createDir = (dirId, name) => {
 
       const { getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       const response = await axios.post(
         '/api/file/',
@@ -72,7 +72,7 @@ export const uploadFile = (dirId, file) => {
     try {
       const { getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       const formData = new FormData()
 
@@ -106,7 +106,7 @@ export const downloadFile = (file) => {
     try {
       const { getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       const response = await fetch(`/api/file/download?id=${file._id}`, {
         headers: { Authorization: `Bearer ${data.token}` },
@@ -141,7 +141,7 @@ export const deleteFile = (file) => {
 
       const { getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       const response = await axios.delete(`/api/file/?id=${file._id}`, {
         headers: { Authorization: `Bearer ${data.token}` },
@@ -167,7 +167,7 @@ export const searchFile = (search) => {
 
       const { getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       const response = await axios.get(`/api/file/search?search=${search}`, {
         headers: { Authorization: `Bearer ${data.token}` },

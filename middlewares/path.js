@@ -1,15 +1,21 @@
-export const filePathMiddleware = (path) => {
-  return function (req, res, next) {
-    req.filePath = path
+class PathMiddleware {
+  filePath(path) {
+    return function (req, res, next) {
+      req.filePath = path
 
-    next()
+      next()
+    }
+  }
+
+  staticPath(path) {
+    return function (req, res, next) {
+      req.staticPath = path
+
+      next()
+    }
   }
 }
 
-export const staticPathMiddleware = (path) => {
-  return function (req, res, next) {
-    req.staticPath = path
+const pathMiddleware = new PathMiddleware()
 
-    next()
-  }
-}
+export default pathMiddleware

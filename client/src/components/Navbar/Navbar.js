@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { useLocation, NavLink } from 'react-router-dom'
 import actions from 'store/actions/index'
 import { Search, Sidedrawer } from 'components/index'
 import { Icon } from 'components/UI/index'
@@ -9,6 +9,7 @@ import 'components/Navbar/Navbar.scss'
 const Navbar = ({ isAuthenticated }) => {
   const [sidedrawer, setSidedrawer] = useState(false)
 
+  const location = useLocation()
   const dispatch = useDispatch()
 
   const onToggleSidedrawer = () => {
@@ -20,7 +21,9 @@ const Navbar = ({ isAuthenticated }) => {
       <div className='navbar__brand'>
         <span className='navbar__title'>Cloud storage</span>
       </div>
-      {isAuthenticated ? <Search className='navbar__search' /> : null}
+      {location.pathname === '/' && isAuthenticated ? (
+        <Search className='navbar__search' />
+      ) : null}
       {sidedrawer ? (
         <Sidedrawer
           isAuthenticated={isAuthenticated}

@@ -34,7 +34,7 @@ export const loginUser = (form) => {
 
       dispatch(actionCreators.loginUser(response.data))
 
-      setItem('cloudStorage', response.data)
+      setItem('cloud-storage', response.data)
     } catch (err) {
       console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
@@ -50,7 +50,7 @@ export const logoutUser = () => {
 
     dispatch(actionCreators.logoutUser())
 
-    removeItem('cloudStorage')
+    removeItem('cloud-storage')
   }
 }
 
@@ -59,7 +59,7 @@ export const uploadAvatar = (file) => {
     try {
       const { setItem, getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       const formData = new FormData()
 
@@ -73,7 +73,7 @@ export const uploadAvatar = (file) => {
 
       data.user = response.data.user
 
-      setItem('cloudStorage', data)
+      setItem('cloud-storage', data)
     } catch (err) {
       console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
@@ -86,7 +86,7 @@ export const deleteAvatar = () => {
     try {
       const { setItem, getItem } = useStorage()
 
-      const data = getItem('cloudStorage')
+      const data = getItem('cloud-storage')
 
       const response = await axios.delete('/api/file/avatar', {
         headers: { Authorization: `Bearer ${data.token}` },
@@ -96,7 +96,7 @@ export const deleteAvatar = () => {
 
       data.user = response.data.user
 
-      setItem('cloudStorage', data)
+      setItem('cloud-storage', data)
     } catch (err) {
       console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
