@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
 import actions from 'store/actions/index'
 import { Icon } from 'components/UI/index'
-import 'components/Sidedrawer/Sidedrawer.scss'
 
 const Sidedrawer = ({ isAuthenticated, onToggleSidedrawer }) => {
   const dispatch = useDispatch()
@@ -18,79 +18,116 @@ const Sidedrawer = ({ isAuthenticated, onToggleSidedrawer }) => {
   }
 
   return (
-    <nav className='sidedrawer' onClick={handlerClick}>
-      <div className='sidedrawer__container'>
+    <SidedrawerStyles onClick={handlerClick}>
+      <SidedrawerContainer>
         {isAuthenticated ? (
           <>
             <Icon
-              className='sidedrawer__times fas fa-times'
+              sidedrawerIcon
+              className='fas fa-times'
               onClick={onToggleSidedrawer}
             />
-            <ul className='sidedrawer__list'>
-              <li className='sidedrawer__item'>
-                <NavLink
-                  className='sidedrawer__link'
-                  to='/'
-                  exact
-                  activeClassName='sidedrawer__link_active'
-                >
+            <SidedrawerList>
+              <SidedrawerItem>
+                <StyledNavLink exact to='/' activeClassName='active'>
                   Disk
-                </NavLink>
-              </li>
-              <li className='sidedrawer__item'>
-                <NavLink
-                  className='sidedrawer__link'
-                  to='/profile'
-                  exact
-                  activeClassName='sidedrawer__link_active'
-                >
+                </StyledNavLink>
+              </SidedrawerItem>
+              <SidedrawerItem>
+                <StyledNavLink to='/profile' exact activeClassName='active'>
                   Profile
-                </NavLink>
-              </li>
-              <li className='sidedrawer__item'>
-                <a
-                  className='sidedrawer__link'
+                </StyledNavLink>
+              </SidedrawerItem>
+              <SidedrawerItem>
+                <SidedrawerLink
                   href='/login'
                   onClick={() => dispatch(actions.logoutUser())}
                 >
                   Logout
-                </a>
-              </li>
-            </ul>
+                </SidedrawerLink>
+              </SidedrawerItem>
+            </SidedrawerList>
           </>
         ) : (
           <>
             <Icon
-              className='sidedrawer__times fas fa-times'
+              sidedrawerIcon
+              className='fas fa-times'
               onClick={onToggleSidedrawer}
             />
-            <ul className='sidedrawer__list'>
-              <li className='sidedrawer__item'>
-                <NavLink
-                  className='sidedrawer__link'
-                  to='/'
-                  exact
-                  activeClassName='sidedrawer__link_active'
-                >
+            <SidedrawerList>
+              <SidedrawerItem>
+                <StyledNavLink exact to='/' activeClassName='active'>
                   Login
-                </NavLink>
-              </li>
-              <li className='sidedrawer__item'>
-                <NavLink
-                  className='sidedrawer__link'
-                  to='/singup'
-                  exact
-                  activeClassName='sidedrawer__link_active'
-                >
+                </StyledNavLink>
+              </SidedrawerItem>
+              <SidedrawerItem>
+                <StyledNavLink to='/singup' exact activeClassName='active'>
                   Singup
-                </NavLink>
-              </li>
-            </ul>
+                </StyledNavLink>
+              </SidedrawerItem>
+            </SidedrawerList>
           </>
         )}
-      </div>
-    </nav>
+      </SidedrawerContainer>
+    </SidedrawerStyles>
   )
 }
 
 export default Sidedrawer
+
+const SidedrawerStyles = styled.nav`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+`
+
+const SidedrawerContainer = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 40%;
+  height: 100vh;
+  background-color: #f1404b;
+`
+
+const SidedrawerList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  margin-top: 4rem;
+  padding: 0;
+`
+
+const SidedrawerItem = styled.li`
+  margin: 0;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+`
+
+const SidedrawerLink = styled.a`
+  padding-bottom: 0.1rem;
+  text-decoration: none;
+  color: #fff;
+`
+
+const StyledNavLink = styled(NavLink).attrs((props) => ({
+  activeClassName: props.activeClassName,
+}))`
+  padding-bottom: 0.1rem;
+  text-decoration: none;
+  color: #fff;
+
+  &.active {
+    border-bottom: 2px solid #fff;
+  }
+`

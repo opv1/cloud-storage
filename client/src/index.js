@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { store } from 'store/index'
 import App from 'App'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import reportWebVitals from 'reportWebVitals'
 import 'index.scss'
 
@@ -17,16 +17,23 @@ const Global = createGlobalStyle`
     font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
     background-color: #dddfe6;
   }
+
+  html {
+    @media ${(props) => props.theme.media.mobile} {
+      font-size: 14px;
+    }
+  }
 `
 
 const theme = {
   colors: {
-    primary: 'green',
-    secondary: 'red',
+    primary: '#f1404b',
+    secondary: '#252c41',
   },
   media: {
-    phone: '(max-width: 425px)',
-    tablet: '(max-width: 768px) and (min-width: 425px)',
+    mobile: '(max-width: 425px)',
+    tablet: '(max-width: 768px)',
+    laptop: '(min-width: 1024px)',
   },
 }
 

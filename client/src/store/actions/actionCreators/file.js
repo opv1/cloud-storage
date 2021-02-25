@@ -1,11 +1,11 @@
 import {
   SET_CURRENT_DIR,
-  SET_FILES,
+  PUSH_STACK,
+  POP_STACK,
   SET_FILE,
   ADD_FILE,
   DELETE_FILE,
-  PUSH_STACK,
-  POP_STACK,
+  SET_FILES,
 } from 'store/constants'
 
 export const setCurrentDir = (currentDir) => ({
@@ -13,9 +13,14 @@ export const setCurrentDir = (currentDir) => ({
   payload: currentDir,
 })
 
-export const setFiles = (files) => ({
-  type: SET_FILES,
-  payload: files,
+export const pushStack = (dir) => ({
+  type: PUSH_STACK,
+  payload: dir,
+})
+
+export const popStack = (dir) => ({
+  type: POP_STACK,
+  payload: dir,
 })
 
 export const setFile = (file) => ({
@@ -33,12 +38,7 @@ export const deleteFile = (fileId) => ({
   payload: fileId,
 })
 
-export const pushStack = (dir) => ({
-  type: PUSH_STACK,
-  payload: dir,
-})
-
-export const popStack = (dir) => ({
-  type: POP_STACK,
-  payload: dir,
+export const setFiles = (files) => ({
+  type: SET_FILES,
+  payload: files,
 })

@@ -1,37 +1,142 @@
 import React from 'react'
+import styled from 'styled-components'
 import { sizeFormat } from 'utils/index'
 import { Icon } from 'components/UI/index'
 
 const FileTypeList = ({ file, onOpenFolder, onDownloadFile, onDeleteFile }) => {
   return (
-    <div className='file file_list'>
-      <div className='file__image_list'>
+    <FileStyles>
+      <FileImage>
         {file.type === 'dir' ? (
-          <Icon className='fas fa-folder-open' />
+          <Icon fileIconImageList className='fas fa-folder-open' />
         ) : (
-          <Icon className='fas fa-file' />
+          <Icon fileIconImageList className='fas fa-file' />
         )}
-      </div>
-      <div
-        className='file__name_list'
+      </FileImage>
+      <FileName
         onClick={() => onOpenFolder(file)}
         style={file.type === 'dir' ? { cursor: 'pointer' } : {}}
       >
         {file.name}
-      </div>
-      <div className='file__icons_list'>
-        <Icon className='fas fa-trash-alt' onClick={(e) => onDeleteFile(e)} />
+      </FileName>
+      <FileIcons>
+        <Icon
+          fileIconIconsList
+          className='fas fa-trash-alt'
+          onClick={(e) => onDeleteFile(e)}
+        />
         {file.type !== 'dir' && (
           <Icon
+            fileIconIconsList
             className='fas fa-download'
             onClick={(e) => onDownloadFile(e)}
           />
         )}
-      </div>
-      <div className='file__date_list'>{file.date.slice(0, 10)}</div>
-      <div className='file__size_list'>{sizeFormat(file.size)}</div>
-    </div>
+      </FileIcons>
+      <FileDate>{file.date.slice(0, 10)}</FileDate>
+      <FileSize>{sizeFormat(file.size)}</FileSize>
+    </FileStyles>
   )
 }
 
 export default FileTypeList
+
+const FileStyles = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 4fr repeat(4, 1fr);
+  border-bottom: 1px solid #696969;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  @media ${(props) => props.theme.media.tablet} {
+    grid-template-columns: 1fr 2fr repeat(3, 1fr);
+  }
+
+  @media ${(props) => props.theme.media.mobile} {
+    grid-template-columns: 2fr repeat(3, 1fr);
+    height: 70px;
+  }
+`
+
+const FileImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  grid-column-start: 1;
+  min-width: 80px;
+  font-size: 3rem;
+
+  @media ${(props) => props.theme.media.mobile} {
+    display: none;
+  }
+`
+
+const FileName = styled.div`
+  display: flex;
+  align-items: center;
+  grid-column-start: 2;
+  height: 100%;
+
+  @media ${(props) => props.theme.media.mobile} {
+    justify-self: center;
+    grid-column-start: 1;
+  }
+`
+
+const FileIcons = styled.div`
+  display: grid;
+  grid-column-start: 4;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media ${(props) => props.theme.media.tablet} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column-start: 3;
+  }
+
+  @media ${(props) => props.theme.media.mobile} {
+    grid-column-start: 2;
+  }
+`
+
+const FileDate = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  grid-column-start: 5;
+
+  @media ${(props) => props.theme.media.laptop} {
+    font-size: 0.9rem;
+  }
+
+  @media ${(props) => props.theme.media.tablet} {
+    grid-column-start: 4;
+  }
+
+  @media ${(props) => props.theme.media.mobile} {
+    grid-column-start: 3;
+  }
+`
+
+const FileSize = styled.div`
+  justify-self: center;
+  grid-column-start: 6;
+
+  @media ${(props) => props.theme.media.laptop} {
+    font-size: 0.9rem;
+  }
+
+  @media ${(props) => props.theme.media.tablet} {
+    grid-column-start: 5;
+  }
+
+  @media ${(props) => props.theme.media.mobile} {
+    grid-column-start: 4;
+  }
+`

@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import actionCreators from 'store/actions/actionCreators/index'
 import ModalConfirmDelete from 'components/Modal/Internal/ModalConfirmDelete'
 import ModalCreateFolder from 'components/Modal/Internal/ModalCreateFolder'
-import 'components/Modal/Modal.scss'
 
 const Modal = () => {
-  const { loading } = useSelector((state) => state.app)
   const { type } = useSelector((state) => state.modal)
-
   const dispatch = useDispatch()
 
   const handlerClick = (e) => {
@@ -18,11 +15,11 @@ const Modal = () => {
   }
 
   if (type === 'confirmDelete') {
-    return <ModalConfirmDelete handlerClick={handlerClick} loading={loading} />
+    return <ModalConfirmDelete handlerClick={handlerClick} />
   }
 
   if (type === 'createFolder') {
-    return <ModalCreateFolder handlerClick={handlerClick} loading={loading} />
+    return <ModalCreateFolder handlerClick={handlerClick} />
   }
 }
 

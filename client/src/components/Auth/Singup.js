@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 import actions from 'store/actions/index'
 import { Label, Input, Button } from 'components/UI/index'
-import 'components/Auth/Auth.scss'
 
 const Singup = () => {
   const [form, setForm] = useState({
@@ -10,9 +10,7 @@ const Singup = () => {
     password: '',
     confirmPassword: '',
   })
-
   const { loading } = useSelector((state) => state.app)
-
   const dispatch = useDispatch()
 
   const handlerChange = (e) => {
@@ -25,23 +23,24 @@ const Singup = () => {
   }
 
   return (
-    <div className='auth'>
-      <div className='auth__container'>
-        <span className='auth__title'>Singup Form</span>
-        <form className='auth__form'>
-          <div className='auth__block'>
-            <Label className='auth__label' htmlFor='email' name='Email' />
+    <SingupStyles>
+      <SingupContainer>
+        <SingupTitle>Singup Form</SingupTitle>
+        <SingupForm>
+          <SingupBlock>
+            <Label singupLabel htmlFor='email' name='Email' />
             <Input
-              className='auth__input'
+              singupInput
               onChange={handlerChange}
               id='email'
+              type='text'
               value={form.email}
               name='email'
               placeholder='example@mail.com'
             />
-            <Label className='auth__label' htmlFor='password' name='Password' />
+            <Label singupLabel htmlFor='password' name='Password' />
             <Input
-              className='auth__input'
+              singupInput
               onChange={handlerChange}
               id='password'
               type='password'
@@ -49,8 +48,13 @@ const Singup = () => {
               name='password'
               placeholder='******'
             />
-            <Label htmlFor='confirmPassword' name='Confirm password' />
+            <Label
+              singupLabel
+              htmlFor='confirmPassword'
+              name='Confirm password'
+            />
             <Input
+              singupInput
               onChange={handlerChange}
               id='confirmPassword'
               type='password'
@@ -58,17 +62,52 @@ const Singup = () => {
               name='confirmPassword'
               placeholder='******'
             />
-          </div>
+          </SingupBlock>
           <Button
-            className='auth__button'
+            secondaryColor
+            singupButton
             onClick={(e) => onSingupUser(e, form)}
             name='Singup'
             disabled={loading}
           />
-        </form>
-      </div>
-    </div>
+        </SingupForm>
+      </SingupContainer>
+    </SingupStyles>
   )
 }
 
 export default Singup
+
+const SingupStyles = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+`
+
+const SingupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 2rem;
+  background-color: #fff;
+`
+
+const SingupTitle = styled.span`
+  margin-bottom: 1rem;
+  font-size: 2rem;
+`
+
+const SingupForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const SingupBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+`

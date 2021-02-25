@@ -1,45 +1,93 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 import actions from 'store/actions/index'
 import actionCreators from 'store/actions/actionCreators/index'
 import { Icon, Input, Button } from 'components/UI/index'
 
-const ModalCreateFolder = ({ handlerClick, loading }) => {
+const ModalCreateFolder = ({ handlerClick }) => {
   const [value, setValue] = useState('')
-
+  const { loading } = useSelector((state) => state.app)
   const { currentDir } = useSelector((state) => state.file)
-
   const dispatch = useDispatch()
+  const { object } = useLocalStorage()
 
   return (
-    <div className='modal' onClick={handlerClick}>
-      <div className='modal__container'>
-        <div className='modal__header'>
-          <span className='modal__title'>Create new folder</span>
+    <ModalStyles onClick={handlerClick}>
+      <ModalContainer>
+        <ModalHeader>
+          <ModalTitle>Create new folder</ModalTitle>
           <Icon
-            className='modal__icon fas fa-window-close'
+            modalIcon
+            className='fas fa-window-close'
             onClick={() => dispatch(actionCreators.closeModal())}
           />
-        </div>
-        <div className='modal__block'>
+        </ModalHeader>
+        <ModalBlock>
           <Input
-            className='modal__input'
+            modalInput
             onChange={(e) => setValue(e.target.value)}
+            type='text'
             value={value}
             name='folder'
             placeholder='Folder name'
             maxLength='10'
           />
           <Button
-            className='modal__button'
-            onClick={() => dispatch(actions.createDir(currentDir, value))}
+            secondaryColor
+            modalButton
+            onClick={() =>
+              dispatch(actions.createDir(object, currentDir, value))
+            }
             name='Create'
             disabled={!value || loading}
           />
-        </div>
-      </div>
-    </div>
+        </ModalBlock>
+      </ModalContainer>
+    </ModalStyles>
   )
 }
 
 export default ModalCreateFolder
+
+const ModalStyles = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+`
+
+const ModalContainer = styled.div`
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 2rem;
+  max-width: 300px;
+  background-color: #fff;
+`
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+`
+
+const ModalTitle = styled.span`
+  font-size: 1.5rem;
+`
+
+const ModalBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`

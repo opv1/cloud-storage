@@ -1,15 +1,10 @@
 import axios from 'axios'
-import { useStorage } from 'hooks/useStorage'
 import actionCreators from 'store/actions/actionCreators/index'
 
-export const getFiles = (dirId, sortType) => {
+export const getFiles = (object, dirId, sortType) => {
   return async (dispatch) => {
     try {
       dispatch(actionCreators.setLoading())
-
-      const { getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
 
       let url = `/api/file/`
 
@@ -26,7 +21,7 @@ export const getFiles = (dirId, sortType) => {
       }
 
       const response = await axios.get(url, {
-        headers: { Authorization: `Bearer ${data.token}` },
+        headers: { Authorization: `Bearer ${object.token}` },
       })
 
       dispatch(actionCreators.setFiles(response.data))
@@ -39,20 +34,16 @@ export const getFiles = (dirId, sortType) => {
   }
 }
 
-export const createDir = (dirId, name) => {
+export const createDir = (object, dirId, name) => {
   return async (dispatch) => {
     try {
       dispatch(actionCreators.setLoading())
-
-      const { getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
 
       const response = await axios.post(
         '/api/file/',
         { name, parent: dirId, type: 'dir' },
         {
-          headers: { Authorization: `Bearer ${data.token}` },
+          headers: { Authorization: `Bearer ${object.token}` },
         }
       )
 
@@ -67,13 +58,9 @@ export const createDir = (dirId, name) => {
   }
 }
 
-export const uploadFile = (dirId, file) => {
+export const uploadFile = (object, dirId, file) => {
   return async (dispatch) => {
     try {
-      const { getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
-
       const formData = new FormData()
 
       formData.append('file', file)
@@ -83,7 +70,7 @@ export const uploadFile = (dirId, file) => {
       }
 
       const response = await axios.post('/api/file/upload', formData, {
-        headers: { Authorization: `Bearer ${data.token}` },
+        headers: { Authorization: `Bearer ${object.token}` },
         /*         onUploadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent
 
@@ -101,15 +88,11 @@ export const uploadFile = (dirId, file) => {
   }
 }
 
-export const downloadFile = (file) => {
+export const downloadFile = (object, file) => {
   return async (dispatch) => {
     try {
-      const { getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
-
       const response = await fetch(`/api/file/download?id=${file._id}`, {
-        headers: { Authorization: `Bearer ${data.token}` },
+        headers: { Authorization: `Bearer ${object.token}` },
       })
 
       if (response.ok) {
@@ -134,17 +117,13 @@ export const downloadFile = (file) => {
   }
 }
 
-export const deleteFile = (file) => {
+export const deleteFile = (object, file) => {
   return async (dispatch) => {
     try {
       dispatch(actionCreators.setLoading())
 
-      const { getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
-
       const response = await axios.delete(`/api/file/?id=${file._id}`, {
-        headers: { Authorization: `Bearer ${data.token}` },
+        headers: { Authorization: `Bearer ${object.token}` },
       })
 
       dispatch(actionCreators.deleteFile(file._id))
@@ -160,17 +139,13 @@ export const deleteFile = (file) => {
   }
 }
 
-export const searchFile = (search) => {
+export const searchFile = (object, search) => {
   return async (dispatch) => {
     try {
       dispatch(actionCreators.setLoading())
 
-      const { getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
-
       const response = await axios.get(`/api/file/search?search=${search}`, {
-        headers: { Authorization: `Bearer ${data.token}` },
+        headers: { Authorization: `Bearer ${object.token}` },
       })
 
       dispatch(actionCreators.setFiles(response.data))

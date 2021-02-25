@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 import actions from 'store/actions/index'
 import actionCreators from 'store/actions/actionCreators/index'
 import { Search } from 'components/index'
 import { Button, Label, Input, Icon } from 'components/UI/index'
-import 'components/Panel/Panel.scss'
 
 const Panel = () => {
   const [sortType, setSortType] = useState('date')
-
   const { view } = useSelector((state) => state.app)
   const { currentDir, stack } = useSelector((state) => state.file)
-
   const dispatch = useDispatch()
+  const { object } = useLocalStorage()
 
   const onGoBack = () => {
     const backDir = stack.pop()
@@ -25,39 +25,41 @@ const Panel = () => {
   }
 
   useEffect(() => {
-    dispatch(actions.getFiles(currentDir, sortType))
+    dispatch(actions.getFiles(object, currentDir, sortType))
     // eslint-disable-next-line
   }, [currentDir, sortType])
 
   return (
-    <div className='panel'>
-      <Search className='panel__search' />
-      <div className='panel__buttons'>
+    <PanelStyles>
+      <Search searchPanel />
+      <PanelButtons>
         <Button
-          className='panel__button'
+          secondaryColor
+          panelButton
           onClick={() => onGoBack()}
           name='Back'
           disabled={!currentDir}
         />
         <Button
-          className='panel__button'
+          secondaryColor
+          panelButton
           onClick={() => dispatch(actionCreators.setModal('createFolder'))}
           name='Create folder'
         />
-      </div>
-      <div className='panel__upload'>
-        <Label className='panel__label' htmlFor='file' name='Upload file(s)' />
+      </PanelButtons>
+      <PanelUpload>
+        <Label panelLabel htmlFor='file' name='Upload file(s)' />
         <Input
-          className='panel__input'
+          panelInput
           onChange={(e) => onUploadFile(e)}
           id='file'
           type='file'
           name='file'
           multiple={true}
         />
-      </div>
-      <div className='panel__options'>
-        <div className='panel__sort'>
+      </PanelUpload>
+      <PanelOptions>
+        <PanelSort>
           <span>Sorting files:</span>
           <select
             onChange={(e) => setSortType(e.target.value)}
@@ -67,25 +69,83 @@ const Panel = () => {
             <option value='type'>Type</option>
             <option value='name'>Name</option>
           </select>
-        </div>
-        <div className='panel__views'>
+        </PanelSort>
+        <PanelView>
           <span>View files:</span>
-          <div className='panel__icons'>
+          <PanelIcons>
             <Icon
-              className='panel__icon fas fa-list'
+              panelIcon
+              activeIcon={view === 'typeList'}
+              className='fas fa-list'
               onClick={() => dispatch(actionCreators.setView('typeList'))}
-              active={view === 'typeList'}
             />
             <Icon
-              className='panel__icon fas fa-table'
+              panelIcon
+              activeIcon={view === 'typeTable'}
+              className='fas fa-table'
               onClick={() => dispatch(actionCreators.setView('typeTable'))}
-              active={view === 'typeTable'}
             />
-          </div>
-        </div>
-      </div>
-    </div>
+          </PanelIcons>
+        </PanelView>
+      </PanelOptions>
+    </PanelStyles>
   )
 }
 
 export default Panel
+
+const PanelStyles = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`
+
+const PanelButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+`
+
+const PanelUpload = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  border: 1px solid #696969;
+  border-radius: 3px;
+  padding: 1rem;
+  max-width: 300px;
+`
+
+const PanelOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 1rem;
+`
+
+const PanelSort = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem;
+
+  span {
+    margin-right: 1rem;
+  }
+`
+
+const PanelView = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+
+  span {
+    margin-right: 1rem;
+  }
+`
+
+const PanelIcons = styled.div`
+  display: flex;
+  align-items: center;
+`

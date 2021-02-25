@@ -1,18 +1,18 @@
 import {
   SET_CURRENT_DIR,
-  SET_FILES,
+  PUSH_STACK,
+  POP_STACK,
   SET_FILE,
   ADD_FILE,
   DELETE_FILE,
-  PUSH_STACK,
-  POP_STACK,
+  SET_FILES,
 } from 'store/constants'
 
 const initialState = {
   currentDir: null,
-  files: [],
-  file: {},
   stack: [],
+  file: {},
+  files: [],
 }
 
 const fileReducer = (state = initialState, { type, payload }) => {
@@ -22,10 +22,15 @@ const fileReducer = (state = initialState, { type, payload }) => {
         ...state,
         currentDir: payload,
       }
-    case SET_FILES:
+    case PUSH_STACK:
       return {
         ...state,
-        files: payload,
+        stack: [...state.stack, payload],
+      }
+    case POP_STACK:
+      return {
+        ...state,
+        stack: state.stack.pop(payload),
       }
     case SET_FILE:
       return {
@@ -42,15 +47,10 @@ const fileReducer = (state = initialState, { type, payload }) => {
         ...state,
         files: [...state.files.filter((file) => file._id !== payload)],
       }
-    case PUSH_STACK:
+    case SET_FILES:
       return {
         ...state,
-        stack: [...state.stack, payload],
-      }
-    case POP_STACK:
-      return {
-        ...state,
-        stack: state.stack.pop(payload),
+        files: payload,
       }
     default:
       return state

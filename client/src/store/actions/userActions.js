@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useStorage } from 'hooks/useStorage'
 import actionCreators from 'store/actions/actionCreators/index'
 
 export const singupUser = (form) => {
@@ -26,15 +25,13 @@ export const loginUser = (form) => {
     try {
       dispatch(actionCreators.setLoading())
 
-      const { setItem } = useStorage()
-
       const response = await axios.post('/api/auth/login', {
         ...form,
       })
 
       dispatch(actionCreators.loginUser(response.data))
 
-      setItem('cloud-storage', response.data)
+      localStorage.setItem('cloud-storage', JSON.stringify(response.data))
     } catch (err) {
       console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
@@ -46,34 +43,26 @@ export const loginUser = (form) => {
 
 export const logoutUser = () => {
   return (dispatch) => {
-    const { removeItem } = useStorage()
-
     dispatch(actionCreators.logoutUser())
-
-    removeItem('cloud-storage')
   }
 }
 
-export const uploadAvatar = (file) => {
+export const uploadAvatar = (object, file) => {
   return async (dispatch) => {
     try {
-      const { setItem, getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
-
       const formData = new FormData()
 
       formData.append('file', file)
 
       const response = await axios.post('/api/file/avatar', formData, {
-        headers: { Authorization: `Bearer ${data.token}` },
+        headers: { Authorization: `Bearer ${object.token}` },
       })
 
       dispatch(actionCreators.setAvatar(response.data.user.avatar))
 
-      data.user = response.data.user
+      object.user = response.data.user
 
-      setItem('cloud-storage', data)
+      localStorage.setItem('cloud-storage', object)
     } catch (err) {
       console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))
@@ -81,22 +70,18 @@ export const uploadAvatar = (file) => {
   }
 }
 
-export const deleteAvatar = () => {
+export const deleteAvatar = (object) => {
   return async (dispatch) => {
     try {
-      const { setItem, getItem } = useStorage()
-
-      const data = getItem('cloud-storage')
-
       const response = await axios.delete('/api/file/avatar', {
-        headers: { Authorization: `Bearer ${data.token}` },
+        headers: { Authorization: `Bearer ${object.token}` },
       })
 
       dispatch(actionCreators.setAvatar(response.data.user.avatar))
 
-      data.user = response.data.user
+      object.user = response.data.user
 
-      setItem('cloud-storage', data)
+      localStorage.setItem('cloud-storage', object)
     } catch (err) {
       console.log(err)
       dispatch(actionCreators.showAlert(err.response.data.message))

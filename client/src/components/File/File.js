@@ -1,16 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 import actions from 'store/actions/index'
 import actionCreators from 'store/actions/actionCreators/index'
 import FileTypeList from 'components/File/Internal/FileTypeList'
 import FileTypeTable from 'components/File/Internal/FileTypeTable'
-import 'components/File/File.scss'
 
 const File = ({ file }) => {
   const { view } = useSelector((state) => state.app)
   const { currentDir } = useSelector((state) => state.file)
-
   const dispatch = useDispatch()
+  const { object } = useLocalStorage()
 
   const onOpenFolder = (file) => {
     if (file.type === 'dir') {
@@ -21,7 +21,7 @@ const File = ({ file }) => {
 
   const onDownloadFile = (e) => {
     e.stopPropagation()
-    dispatch(actions.downloadFile(file))
+    dispatch(actions.downloadFile(object, file))
   }
 
   const onDeleteFile = (e) => {

@@ -1,20 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import styled, { css } from 'styled-components'
 import actions from 'store/actions/index'
 import { Input, Icon } from 'components/UI/index'
-import 'components/Search/Search.scss'
 
-const Search = ({ className }) => {
+const Search = (props) => {
   const [value, setValue] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(false)
-
   const dispatch = useDispatch()
-
-  const cls = ['search']
-
-  if (className) {
-    cls.unshift(className)
-  }
 
   const handlerChange = (e) => {
     setValue(e.target.value)
@@ -40,21 +33,47 @@ const Search = ({ className }) => {
   }
 
   return (
-    <div className={cls.join(' ')}>
-      <div className='search__block'>
+    <SearchStyles {...props}>
+      <SearchBlock>
         <Input
-          className='search__input'
+          searchInput
           onChange={handlerChange}
+          type='text'
           value={value}
           name='search'
           placeholder='Searching...'
         />
         {value ? (
-          <Icon className='search__icon fas fa-times' onClick={onResetSearch} />
+          <Icon searchIcon className='fas fa-times' onClick={onResetSearch} />
         ) : null}
-      </div>
-    </div>
+      </SearchBlock>
+    </SearchStyles>
   )
 }
 
 export default Search
+
+const SearchStyles = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media ${(props) => props.theme.media.mobile} {
+    display: none;
+  }
+
+  @media ${(props) => props.theme.media.mobile && props.searchPanel} {
+    display: flex;
+  }
+
+  ${(props) =>
+    props.searchPanel &&
+    css`
+      display: none;
+    `}
+`
+
+const SearchBlock = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`

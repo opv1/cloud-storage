@@ -1,18 +1,33 @@
 import React from 'react'
-import 'components/UI/Button/Button.scss'
+import styled, { css } from 'styled-components'
 
-const Button = ({ className, onClick, name, disabled }) => {
-  const cls = ['button']
-
-  if (className) {
-    cls.unshift(className)
-  }
-
-  return (
-    <button className={cls.join(' ')} onClick={onClick} disabled={disabled}>
-      {name}
-    </button>
-  )
+const Button = (props) => {
+  return <ButtonStyles {...props}>{props.name}</ButtonStyles>
 }
 
 export default Button
+
+const ButtonStyles = styled.button`
+  outline: none;
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  ${(props) =>
+    props.panelButton &&
+    css`
+      margin: 0.5rem;
+    `}
+
+  ${(props) =>
+    props.secondaryColor &&
+    css`
+      background-color: ${(props) => props.theme.colors.secondary};
+    `}
+`

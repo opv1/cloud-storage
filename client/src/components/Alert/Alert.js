@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 import actionCreators from 'store/actions/actionCreators/index'
 import { Icon } from 'components/UI/index'
-import 'components/Alert/Alert.scss'
 
 const Alert = () => {
   const { alert, message } = useSelector((state) => state.alert)
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -19,14 +18,32 @@ const Alert = () => {
   }, [alert])
 
   return (
-    <div className='alert'>
-      <span className='alert__message'>{message}</span>
+    <AlertStyles>
+      <AlertMessage>{message}</AlertMessage>
       <Icon
-        className='alert__icon fas fa-times'
+        alertIcon
+        className='fas fa-times'
         onClick={() => dispatch(actionCreators.hideAlert())}
       />
-    </div>
+    </AlertStyles>
   )
 }
 
 export default Alert
+
+const AlertStyles = styled.div`
+  position: absolute;
+  right: 0;
+  top: 60px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: #fff;
+`
+
+const AlertMessage = styled.span`
+  margin-right: 1rem;
+`

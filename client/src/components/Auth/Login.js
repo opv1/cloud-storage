@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 import actions from 'store/actions/index'
 import { Label, Input, Button } from 'components/UI/index'
-import 'components/Auth/Auth.scss'
 
 const Login = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
   })
-
   const { loading } = useSelector((state) => state.app)
-
   const dispatch = useDispatch()
 
   const handlerChange = (e) => {
@@ -24,23 +22,24 @@ const Login = () => {
   }
 
   return (
-    <div className='auth'>
-      <div className='auth__container'>
-        <span className='auth__title'>Login Form</span>
-        <form className='auth__form'>
-          <div className='auth__block'>
-            <Label className='auth__label' htmlFor='email' name='Email' />
+    <LoginStyles>
+      <LoginContainer>
+        <LoginTitle>Login Form</LoginTitle>
+        <LoginForm>
+          <LoginBlock>
+            <Label loginLabel htmlFor='email' name='Email' />
             <Input
-              className='auth__input'
+              loginInput
               onChange={handlerChange}
               id='email'
+              type='text'
               value={form.email}
               name='email'
               placeholder='example@mail.com'
             />
-            <Label className='auth__label' htmlFor='password' name='Password' />
+            <Label loginLabel htmlFor='password' name='Password' />
             <Input
-              className='auth__input'
+              loginInput
               onChange={handlerChange}
               id='password'
               type='password'
@@ -48,17 +47,52 @@ const Login = () => {
               name='password'
               placeholder='******'
             />
-          </div>
+          </LoginBlock>
           <Button
-            className='auth__button'
+            secondaryColor
+            loginButton
             onClick={(e) => onLoginUser(e, form)}
             name='Login'
             disabled={loading}
           />
-        </form>
-      </div>
-    </div>
+        </LoginForm>
+      </LoginContainer>
+    </LoginStyles>
   )
 }
 
 export default Login
+
+const LoginStyles = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+`
+
+const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 2rem;
+  background-color: #fff;
+`
+
+const LoginTitle = styled.span`
+  margin-bottom: 1rem;
+  font-size: 2rem;
+`
+
+const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const LoginBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+`
