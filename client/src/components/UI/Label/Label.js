@@ -13,8 +13,8 @@ const LabelStyles = styled.label`
   ${(props) =>
     props.panelLabel &&
     css`
-      padding: 0;
-      width: 100%;
+      margin: 0;
+      text-align: center;
     `}
 
   ${(props) =>

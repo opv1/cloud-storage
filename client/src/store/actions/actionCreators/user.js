@@ -1,15 +1,15 @@
-import { LOGIN_USER, LOGOUT_USER, SET_AVATAR } from 'store/constants'
+import { USER_SET, USER_LOGIN, USER_LOGOUT } from 'store/constants'
 
-export const loginUser = (data) => ({
-  type: LOGIN_USER,
+export const userSet = (user) => ({
+  type: USER_SET,
+  payload: user,
+})
+
+export const userLogin = (data) => ({
+  type: USER_LOGIN,
   payload: data,
 })
 
-export const logoutUser = () => ({
-  type: LOGOUT_USER,
-})
-
-export const setAvatar = (avatar) => ({
-  type: SET_AVATAR,
-  payload: avatar,
+export const userLogout = () => ({
+  type: USER_LOGOUT,
 })

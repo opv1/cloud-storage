@@ -1,38 +1,29 @@
-import {
-  SET_LOADING,
-  SET_VIEW,
-  SET_PROGRESS,
-  SET_PERCENTAGE,
-} from 'store/constants'
+import { APP_READY, APP_LOADING, APP_VIEW } from 'store/constants'
 
 const initialState = {
+  ready: false,
   loading: false,
-  view: 'typeList',
+  view: 'list',
   progress: false,
   percentage: 0,
 }
 
 const appReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case SET_LOADING:
+    case APP_READY:
+      return {
+        ...state,
+        ready: payload,
+      }
+    case APP_LOADING:
       return {
         ...state,
         loading: !state.loading,
       }
-    case SET_VIEW:
+    case APP_VIEW:
       return {
         ...state,
         view: payload,
-      }
-    case SET_PROGRESS:
-      return {
-        ...state,
-        progress: !state.progress,
-      }
-    case SET_PERCENTAGE:
-      return {
-        ...state,
-        percentage: payload,
       }
     default:
       return state

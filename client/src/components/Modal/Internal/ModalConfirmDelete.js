@@ -11,14 +11,14 @@ const ModalConfirmDelete = ({ handlerClick }) => {
   const dispatch = useDispatch()
 
   return (
-    <ModalStyles onClick={handlerClick}>
+    <ModalStyles data-attr='modal' onClick={handlerClick}>
       <ModalContainer>
         <ModalHeader>
           <ModalTitle>Exactly remove?</ModalTitle>
           <Icon
             modalIcon
             className='fas fa-window-close'
-            onClick={() => dispatch(actionCreators.closeModal())}
+            onClick={() => dispatch(actionCreators.modalClose())}
           />
         </ModalHeader>
         <ModalBlock>

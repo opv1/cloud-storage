@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { useLocalStorage } from 'hooks/useLocalStorage'
 import actions from 'store/actions/index'
 import actionCreators from 'store/actions/actionCreators/index'
 import { Icon, Input, Button } from 'components/UI/index'
@@ -11,17 +10,16 @@ const ModalCreateFolder = ({ handlerClick }) => {
   const { loading } = useSelector((state) => state.app)
   const { currentDir } = useSelector((state) => state.file)
   const dispatch = useDispatch()
-  const { object } = useLocalStorage()
 
   return (
-    <ModalStyles onClick={handlerClick}>
+    <ModalStyles data-attr='modal' onClick={handlerClick}>
       <ModalContainer>
         <ModalHeader>
           <ModalTitle>Create new folder</ModalTitle>
           <Icon
             modalIcon
             className='fas fa-window-close'
-            onClick={() => dispatch(actionCreators.closeModal())}
+            onClick={() => dispatch(actionCreators.modalClose())}
           />
         </ModalHeader>
         <ModalBlock>
@@ -37,9 +35,7 @@ const ModalCreateFolder = ({ handlerClick }) => {
           <Button
             secondaryColor
             modalButton
-            onClick={() =>
-              dispatch(actions.createDir(object, currentDir, value))
-            }
+            onClick={() => dispatch(actions.createDir(currentDir, value))}
             name='Create'
             disabled={!value || loading}
           />

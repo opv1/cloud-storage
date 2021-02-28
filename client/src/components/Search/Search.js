@@ -57,18 +57,23 @@ const SearchStyles = styled.div`
   display: flex;
   align-items: center;
 
-  @media ${(props) => props.theme.media.mobile} {
-    display: none;
-  }
-
-  @media ${(props) => props.theme.media.mobile && props.searchPanel} {
-    display: flex;
-  }
+  ${(props) =>
+    props.searchNavbar &&
+    css`
+      @media ${(props) => props.theme.media.tablet} {
+        display: none;
+      }
+    `}
 
   ${(props) =>
     props.searchPanel &&
     css`
       display: none;
+      margin: 1rem;
+
+      @media ${(props) => props.theme.media.tablet} {
+        display: flex;
+      }
     `}
 `
 

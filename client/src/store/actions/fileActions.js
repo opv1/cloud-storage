@@ -1,10 +1,13 @@
 import axios from 'axios'
 import actionCreators from 'store/actions/actionCreators/index'
+import { ls } from 'utils/localStorage'
 
-export const getFiles = (object, dirId, sortType) => {
+export const getFiles = (dirId, sortType) => {
   return async (dispatch) => {
     try {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
+
+      const data = ls.get()
 
       let url = `/api/file/`
 
@@ -21,48 +24,51 @@ export const getFiles = (object, dirId, sortType) => {
       }
 
       const response = await axios.get(url, {
-        headers: { Authorization: `Bearer ${object.token}` },
+        headers: { Authorization: `Bearer ${data.token}` },
       })
 
-      dispatch(actionCreators.setFiles(response.data))
+      dispatch(actionCreators.filesSet(response.data))
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
     } finally {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
     }
   }
 }
 
-export const createDir = (object, dirId, name) => {
+export const createDir = (dirId, name) => {
   return async (dispatch) => {
     try {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
+
+      const data = ls.get()
 
       const response = await axios.post(
         '/api/file/',
         { name, parent: dirId, type: 'dir' },
         {
-          headers: { Authorization: `Bearer ${object.token}` },
+          headers: { Authorization: `Bearer ${data.token}` },
         }
       )
 
-      dispatch(actionCreators.addFile(response.data))
+      dispatch(actionCreators.fileAdd(response.data))
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
     } finally {
-      dispatch(actionCreators.closeModal())
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.modalClose())
+      dispatch(actionCreators.appLoading())
     }
   }
 }
 
-export const uploadFile = (object, dirId, file) => {
+export const uploadFile = (dirId, file) => {
   return async (dispatch) => {
     try {
-      const formData = new FormData()
+      const data = ls.get()
 
+      const formData = new FormData()
       formData.append('file', file)
 
       if (dirId) {
@@ -70,7 +76,7 @@ export const uploadFile = (object, dirId, file) => {
       }
 
       const response = await axios.post('/api/file/upload', formData, {
-        headers: { Authorization: `Bearer ${object.token}` },
+        headers: { Authorization: `Bearer ${data.token}` },
         /*         onUploadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent
 
@@ -80,19 +86,43 @@ export const uploadFile = (object, dirId, file) => {
         }, */
       })
 
-      dispatch(actionCreators.addFile(response.data))
+      dispatch(actionCreators.fileAdd(response.data))
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
     }
   }
 }
 
-export const downloadFile = (object, file) => {
+export const uploadAvatar = (file) => {
   return async (dispatch) => {
     try {
+      const data = ls.get()
+
+      const formData = new FormData()
+      formData.append('file', file)
+
+      const response = await axios.post('/api/file/avatar', formData, {
+        headers: { Authorization: `Bearer ${data.token}` },
+      })
+
+      dispatch(actionCreators.userSet(response.data.user))
+
+      // ls.set()
+    } catch (err) {
+      console.log(err)
+      dispatch(actionCreators.alertShow(err.response.data.message))
+    }
+  }
+}
+
+export const downloadFile = (file) => {
+  return async (dispatch) => {
+    try {
+      const data = ls.get()
+
       const response = await fetch(`/api/file/download?id=${file._id}`, {
-        headers: { Authorization: `Bearer ${object.token}` },
+        headers: { Authorization: `Bearer ${data.token}` },
       })
 
       if (response.ok) {
@@ -112,48 +142,71 @@ export const downloadFile = (object, file) => {
       }
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
     }
   }
 }
 
-export const deleteFile = (object, file) => {
+export const deleteFile = (file) => {
   return async (dispatch) => {
     try {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
+
+      const data = ls.get()
 
       const response = await axios.delete(`/api/file/?id=${file._id}`, {
-        headers: { Authorization: `Bearer ${object.token}` },
+        headers: { Authorization: `Bearer ${data.token}` },
       })
 
-      dispatch(actionCreators.deleteFile(file._id))
+      dispatch(actionCreators.fileDelete(file._id))
 
-      dispatch(actionCreators.showAlert(response.data.message))
+      dispatch(actionCreators.alertShow(response.data.message))
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
     } finally {
-      dispatch(actionCreators.closeModal())
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.modalClose())
+      dispatch(actionCreators.appLoading())
     }
   }
 }
 
-export const searchFile = (object, search) => {
+export const deleteAvatar = () => {
   return async (dispatch) => {
     try {
-      dispatch(actionCreators.setLoading())
+      const data = ls.get()
 
-      const response = await axios.get(`/api/file/search?search=${search}`, {
-        headers: { Authorization: `Bearer ${object.token}` },
+      const response = await axios.delete('/api/file/avatar', {
+        headers: { Authorization: `Bearer ${data.token}` },
       })
 
-      dispatch(actionCreators.setFiles(response.data))
+      dispatch(actionCreators.userSet(response.data.user))
+
+      // ls.set()
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
+    }
+  }
+}
+
+export const searchFile = (search) => {
+  return async (dispatch) => {
+    try {
+      dispatch(actionCreators.appLoading())
+
+      const data = ls.get()
+
+      const response = await axios.get(`/api/file/search?search=${search}`, {
+        headers: { Authorization: `Bearer ${data.token}` },
+      })
+
+      dispatch(actionCreators.filesSet(response.data))
+    } catch (err) {
+      console.log(err)
+      dispatch(actionCreators.alertShow(err.response.data.message))
     } finally {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
     }
   }
 }

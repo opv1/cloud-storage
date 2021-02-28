@@ -9,8 +9,8 @@ const Modal = () => {
   const dispatch = useDispatch()
 
   const handlerClick = (e) => {
-    if (e.target.classList.contains('modal')) {
-      dispatch(actionCreators.closeModal())
+    if (e.target.getAttribute('data-attr') === 'modal') {
+      dispatch(actionCreators.modalClose())
     }
   }
 

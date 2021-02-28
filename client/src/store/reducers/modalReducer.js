@@ -1,4 +1,4 @@
-import { SET_MODAL, CLOSE_MODAL } from 'store/constants'
+import { MODAL_OPEN, MODAL_CLOSE } from 'store/constants'
 
 const initialState = {
   modal: false,
@@ -7,13 +7,13 @@ const initialState = {
 
 const modalReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case SET_MODAL:
+    case MODAL_OPEN:
       return {
         ...state,
         modal: true,
         type: payload,
       }
-    case CLOSE_MODAL:
+    case MODAL_CLOSE:
       return {
         ...state,
         modal: false,

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 const Progress = () => {
-  const { progress, percentage } = useSelector((state) => state.app)
+  const { percentage } = useSelector((state) => state.app)
 
   return (
     <ProgressStyles>

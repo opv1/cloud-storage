@@ -1,4 +1,4 @@
-import { SHOW_ALERT, HIDE_ALERT } from 'store/constants'
+import { ALERT_SHOW, ALERT_HIDE } from 'store/constants'
 
 const initialState = {
   alert: false,
@@ -7,13 +7,13 @@ const initialState = {
 
 const alertReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case SHOW_ALERT:
+    case ALERT_SHOW:
       return {
         ...state,
         alert: true,
         message: payload,
       }
-    case HIDE_ALERT:
+    case ALERT_HIDE:
       return {
         ...state,
         alert: false,

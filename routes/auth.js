@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { check } from 'express-validator'
-import { authSingup, authLogin } from '../controllers/auth.js'
+import authMiddleware from '../middlewares/auth.js'
+import { authSingup, authLogin, authCheck } from '../controllers/auth.js'
 
 const router = Router()
 
@@ -31,5 +32,6 @@ router.post(
   ],
   authLogin
 )
+router.get('/', authMiddleware, authCheck)
 
 export default router

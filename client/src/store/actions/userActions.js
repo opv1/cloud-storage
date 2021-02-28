@@ -1,21 +1,22 @@
 import axios from 'axios'
 import actionCreators from 'store/actions/actionCreators/index'
+import { ls } from 'utils/localStorage'
 
 export const singupUser = (form) => {
   return async (dispatch) => {
     try {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
 
       const response = await axios.post('/api/auth/singup', {
         ...form,
       })
 
-      dispatch(actionCreators.showAlert(response.data.message))
+      dispatch(actionCreators.alertShow(response.data.message))
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
     } finally {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
     }
   }
 }
@@ -23,68 +24,54 @@ export const singupUser = (form) => {
 export const loginUser = (form) => {
   return async (dispatch) => {
     try {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
 
       const response = await axios.post('/api/auth/login', {
         ...form,
       })
 
-      dispatch(actionCreators.loginUser(response.data))
+      dispatch(actionCreators.userLogin(response.data))
 
-      localStorage.setItem('cloud-storage', JSON.stringify(response.data))
+      ls.set(response.data)
     } catch (err) {
       console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
+      dispatch(actionCreators.alertShow(err.response.data.message))
     } finally {
-      dispatch(actionCreators.setLoading())
+      dispatch(actionCreators.appLoading())
+    }
+  }
+}
+
+export const authUser = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(actionCreators.appLoading())
+
+      const data = ls.get()
+
+      if (data && data.token) {
+        const response = await axios.get('/api/auth/', {
+          headers: { Authorization: `Bearer ${data.token}` },
+        })
+
+        dispatch(actionCreators.userLogin(response.data))
+
+        ls.set(response.data)
+      }
+    } catch (err) {
+      console.log(err)
+      dispatch(actionCreators.alertShow(err.response.data.message))
+    } finally {
+      dispatch(actionCreators.appReady(true))
+      dispatch(actionCreators.appLoading())
     }
   }
 }
 
 export const logoutUser = () => {
   return (dispatch) => {
-    dispatch(actionCreators.logoutUser())
-  }
-}
+    dispatch(actionCreators.userLogout())
 
-export const uploadAvatar = (object, file) => {
-  return async (dispatch) => {
-    try {
-      const formData = new FormData()
-
-      formData.append('file', file)
-
-      const response = await axios.post('/api/file/avatar', formData, {
-        headers: { Authorization: `Bearer ${object.token}` },
-      })
-
-      dispatch(actionCreators.setAvatar(response.data.user.avatar))
-
-      object.user = response.data.user
-
-      localStorage.setItem('cloud-storage', object)
-    } catch (err) {
-      console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
-    }
-  }
-}
-
-export const deleteAvatar = (object) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.delete('/api/file/avatar', {
-        headers: { Authorization: `Bearer ${object.token}` },
-      })
-
-      dispatch(actionCreators.setAvatar(response.data.user.avatar))
-
-      object.user = response.data.user
-
-      localStorage.setItem('cloud-storage', object)
-    } catch (err) {
-      console.log(err)
-      dispatch(actionCreators.showAlert(err.response.data.message))
-    }
+    ls.remove()
   }
 }

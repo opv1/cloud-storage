@@ -30,7 +30,7 @@ const Singup = () => {
           <SingupBlock>
             <Label singupLabel htmlFor='email' name='Email' />
             <Input
-              singupInput
+              authInput
               onChange={handlerChange}
               id='email'
               type='text'
@@ -40,7 +40,7 @@ const Singup = () => {
             />
             <Label singupLabel htmlFor='password' name='Password' />
             <Input
-              singupInput
+              authInput
               onChange={handlerChange}
               id='password'
               type='password'
@@ -54,7 +54,7 @@ const Singup = () => {
               name='Confirm password'
             />
             <Input
-              singupInput
+              authInput
               onChange={handlerChange}
               id='confirmPassword'
               type='password'

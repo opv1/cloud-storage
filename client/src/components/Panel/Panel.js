@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { useLocalStorage } from 'hooks/useLocalStorage'
 import actions from 'store/actions/index'
 import actionCreators from 'store/actions/actionCreators/index'
 import { Search } from 'components/index'
@@ -12,20 +11,19 @@ const Panel = () => {
   const { view } = useSelector((state) => state.app)
   const { currentDir, stack } = useSelector((state) => state.file)
   const dispatch = useDispatch()
-  const { object } = useLocalStorage()
 
   const onGoBack = () => {
     const backDir = stack.pop()
-    dispatch(actionCreators.setCurrentDir(backDir))
+    dispatch(actionCreators.filesCurrentDir(backDir))
   }
 
-  const onUploadFile = (e) => {
+  const onUploadFiles = (e) => {
     const files = [...e.target.files]
     files.forEach((file) => dispatch(actions.uploadFile(currentDir, file)))
   }
 
   useEffect(() => {
-    dispatch(actions.getFiles(object, currentDir, sortType))
+    dispatch(actions.getFiles(currentDir, sortType))
     // eslint-disable-next-line
   }, [currentDir, sortType])
 
@@ -43,15 +41,15 @@ const Panel = () => {
         <Button
           secondaryColor
           panelButton
-          onClick={() => dispatch(actionCreators.setModal('createFolder'))}
+          onClick={() => dispatch(actionCreators.modalOpen('createFolder'))}
           name='Create folder'
         />
       </PanelButtons>
       <PanelUpload>
-        <Label panelLabel htmlFor='file' name='Upload file(s)' />
+        <Label panelLabel htmlFor='file' name='Upload file(s):' />
         <Input
           panelInput
-          onChange={(e) => onUploadFile(e)}
+          onChange={(e) => onUploadFiles(e)}
           id='file'
           type='file'
           name='file'
@@ -75,15 +73,15 @@ const Panel = () => {
           <PanelIcons>
             <Icon
               panelIcon
-              activeIcon={view === 'typeList'}
+              activeIcon={view === 'list'}
               className='fas fa-list'
-              onClick={() => dispatch(actionCreators.setView('typeList'))}
+              onClick={() => dispatch(actionCreators.appView('list'))}
             />
             <Icon
               panelIcon
-              activeIcon={view === 'typeTable'}
+              activeIcon={view === 'table'}
               className='fas fa-table'
-              onClick={() => dispatch(actionCreators.setView('typeTable'))}
+              onClick={() => dispatch(actionCreators.appView('table'))}
             />
           </PanelIcons>
         </PanelView>

@@ -29,7 +29,7 @@ const Login = () => {
           <LoginBlock>
             <Label loginLabel htmlFor='email' name='Email' />
             <Input
-              loginInput
+              authInput
               onChange={handlerChange}
               id='email'
               type='text'
@@ -39,7 +39,7 @@ const Login = () => {
             />
             <Label loginLabel htmlFor='password' name='Password' />
             <Input
-              loginInput
+              authInput
               onChange={handlerChange}
               id='password'
               type='password'

@@ -14,18 +14,27 @@ const InputStyles = styled.input`
   padding: 0.5rem;
   text-align: center;
 
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
-
   &:focus {
     background-color: #eee;
   }
 
   ${(props) =>
+    props.authInput &&
+    css`
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    `}
+
+  ${(props) =>
+    props.modalInput &&
+    css`
+      margin-bottom: 1rem;
+    `}
+
+  ${(props) =>
     props.panelInput &&
     css`
-      padding: 0;
       width: 100%;
     `}
 

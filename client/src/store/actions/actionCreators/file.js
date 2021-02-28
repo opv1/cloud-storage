@@ -1,44 +1,44 @@
 import {
-  SET_CURRENT_DIR,
-  PUSH_STACK,
-  POP_STACK,
-  SET_FILE,
-  ADD_FILE,
-  DELETE_FILE,
-  SET_FILES,
+  FILES_CURRENT_DIR,
+  FILES_SET,
+  FILES_STACK_PUSH,
+  FILES_STACK_POP,
+  FILE_SET,
+  FILE_ADD,
+  FILE_DELETE,
 } from 'store/constants'
 
-export const setCurrentDir = (currentDir) => ({
-  type: SET_CURRENT_DIR,
+export const filesCurrentDir = (currentDir) => ({
+  type: FILES_CURRENT_DIR,
   payload: currentDir,
 })
 
-export const pushStack = (dir) => ({
-  type: PUSH_STACK,
-  payload: dir,
-})
-
-export const popStack = (dir) => ({
-  type: POP_STACK,
-  payload: dir,
-})
-
-export const setFile = (file) => ({
-  type: SET_FILE,
-  payload: file,
-})
-
-export const addFile = (file) => ({
-  type: ADD_FILE,
-  payload: file,
-})
-
-export const deleteFile = (fileId) => ({
-  type: DELETE_FILE,
-  payload: fileId,
-})
-
-export const setFiles = (files) => ({
-  type: SET_FILES,
+export const filesSet = (files) => ({
+  type: FILES_SET,
   payload: files,
+})
+
+export const filesStackPush = (dir) => ({
+  type: FILES_STACK_PUSH,
+  payload: dir,
+})
+
+export const filesStackPop = (dir) => ({
+  type: FILES_STACK_POP,
+  payload: dir,
+})
+
+export const fileSet = (file) => ({
+  type: FILE_SET,
+  payload: file,
+})
+
+export const fileAdd = (file) => ({
+  type: FILE_ADD,
+  payload: file,
+})
+
+export const fileDelete = (fileId) => ({
+  type: FILE_DELETE,
+  payload: fileId,
 })

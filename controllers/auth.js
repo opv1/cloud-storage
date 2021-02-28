@@ -6,6 +6,16 @@ import User from '../models/User.js'
 import File from '../models/File.js'
 import { fileService } from '../services/file.js'
 
+const generateToken = (userId) => {
+  return jwt.sign(
+    { id: userId },
+    process.env.SECRET_KEY || config.get('SECRET_KEY'),
+    {
+      expiresIn: '1h',
+    }
+  )
+}
+
 export const authSingup = async (req, res) => {
   try {
     const errors = validationResult(req)
@@ -71,13 +81,29 @@ export const authLogin = async (req, res) => {
       return res.status(400).json({ message: 'Invalid password' })
     }
 
-    const token = jwt.sign(
-      { id: user.id },
-      process.env.SECRET_KEY || config.get('SECRET_KEY'),
-      {
-        expiresIn: '1h',
-      }
-    )
+    const token = generateToken(user.id)
+
+    return res.json({
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        avatar: user.avatar,
+        diskSpace: user.diskSpace,
+        usedSpace: user.usedSpace,
+      },
+    })
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({ message: 'Something went wrong' })
+  }
+}
+
+export const authCheck = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user.id })
+
+    const token = generateToken(user.id)
 
     return res.json({
       token,

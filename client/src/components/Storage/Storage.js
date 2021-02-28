@@ -7,11 +7,11 @@ const Storage = () => {
   const { loading, view } = useSelector((state) => state.app)
   const { files } = useSelector((state) => state.file)
 
-  if (view === 'typeList') {
+  if (view === 'list') {
     return <StorageTypeList files={files} loading={loading} />
   }
 
-  if (view === 'typeTable') {
+  if (view === 'table') {
     return <StorageTypeTable files={files} loading={loading} />
   }
 }

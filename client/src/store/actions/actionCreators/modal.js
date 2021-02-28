@@ -1,10 +1,10 @@
-import { SET_MODAL, CLOSE_MODAL } from 'store/constants'
+import { MODAL_OPEN, MODAL_CLOSE } from 'store/constants'
 
-export const setModal = (type) => ({
-  type: SET_MODAL,
+export const modalOpen = (type) => ({
+  type: MODAL_OPEN,
   payload: type,
 })
 
-export const closeModal = () => ({
-  type: CLOSE_MODAL,
+export const modalClose = () => ({
+  type: MODAL_CLOSE,
 })

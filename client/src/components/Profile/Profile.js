@@ -1,16 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { useLocalStorage } from 'hooks/useLocalStorage'
 import actions from 'store/actions/index'
-import { sizeFormat } from 'utils/index'
+import sizeFormat from 'utils/sizeFormat'
 import { Label, Input, Button } from 'components/UI/index'
 import defaultAvatar from 'assets/avatar.svg'
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user)
   const dispatch = useDispatch()
-  const { object } = useLocalStorage()
 
   const avatarSrc = user.avatar ? `${'/' + user.avatar}` : defaultAvatar
 
@@ -21,17 +19,19 @@ const Profile = () => {
       const promise = new Promise((resolve, reject) => {
         if (user.avatar) {
           resolve(dispatch(actions.deleteAvatar()))
+        } else {
+          reject(console.log('Nope!'))
         }
       })
 
       promise
-        .then(dispatch(actions.uploadAvatar(object, file)))
+        .then(dispatch(actions.uploadAvatar(file)))
         .catch((err) => console.log(err))
     }
   }
 
   const onDeleteAvatar = () => {
-    dispatch(actions.deleteAvatar(object))
+    dispatch(actions.deleteAvatar())
   }
 
   return (
@@ -42,7 +42,7 @@ const Profile = () => {
             <img src={avatarSrc} alt='avatar' />
           </ProfileImage>
           <ProfileBlock>
-            <Label profileLabel htmlFor='avatar' name='Upload avatar :' />
+            <Label profileLabel htmlFor='avatar' name='Upload avatar:' />
             <Input
               profileInput
               onChange={handlerChange}
@@ -128,10 +128,10 @@ const ProfileUser = styled.div`
   width: 100%;
 
   div {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 
   span {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 `

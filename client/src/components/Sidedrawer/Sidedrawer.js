@@ -9,16 +9,13 @@ const Sidedrawer = ({ isAuthenticated, onToggleSidedrawer }) => {
   const dispatch = useDispatch()
 
   const handlerClick = (e) => {
-    if (
-      e.target.classList.contains('sidedrawer') ||
-      e.target.classList.contains('sidedrawer__link')
-    ) {
+    if (e.target.hasAttribute('data-attr')) {
       onToggleSidedrawer()
     }
   }
 
   return (
-    <SidedrawerStyles onClick={handlerClick}>
+    <SidedrawerStyles data-attr='sidedrawer' onClick={handlerClick}>
       <SidedrawerContainer>
         {isAuthenticated ? (
           <>
@@ -29,17 +26,27 @@ const Sidedrawer = ({ isAuthenticated, onToggleSidedrawer }) => {
             />
             <SidedrawerList>
               <SidedrawerItem>
-                <StyledNavLink exact to='/' activeClassName='active'>
+                <StyledNavLink
+                  data-attr='link'
+                  to='/'
+                  exact
+                  activeClassName='active'
+                >
                   Disk
                 </StyledNavLink>
               </SidedrawerItem>
               <SidedrawerItem>
-                <StyledNavLink to='/profile' exact activeClassName='active'>
+                <StyledNavLink
+                  data-attr='link'
+                  to='/profile'
+                  activeClassName='active'
+                >
                   Profile
                 </StyledNavLink>
               </SidedrawerItem>
               <SidedrawerItem>
                 <SidedrawerLink
+                  data-attr='link'
                   href='/login'
                   onClick={() => dispatch(actions.logoutUser())}
                 >
@@ -57,12 +64,21 @@ const Sidedrawer = ({ isAuthenticated, onToggleSidedrawer }) => {
             />
             <SidedrawerList>
               <SidedrawerItem>
-                <StyledNavLink exact to='/' activeClassName='active'>
+                <StyledNavLink
+                  data-attr='link'
+                  to='/'
+                  exact
+                  activeClassName='active'
+                >
                   Login
                 </StyledNavLink>
               </SidedrawerItem>
               <SidedrawerItem>
-                <StyledNavLink to='/singup' exact activeClassName='active'>
+                <StyledNavLink
+                  data-attr='link'
+                  to='/singup'
+                  activeClassName='active'
+                >
                   Singup
                 </StyledNavLink>
               </SidedrawerItem>

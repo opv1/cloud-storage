@@ -2,21 +2,14 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { useLocalStorage } from 'hooks/useLocalStorage'
 import actions from 'store/actions/index'
 import { Search, Sidedrawer } from 'components/index'
 import { Icon } from 'components/UI/index'
 
 const Navbar = ({ isAuthenticated }) => {
   const [sidedrawer, setSidedrawer] = useState(false)
-  const location = useLocation()
   const dispatch = useDispatch()
-  const { removeStorage } = useLocalStorage()
-
-  const onLogoutUser = () => {
-    dispatch(actions.logoutUser())
-    removeStorage()
-  }
+  const location = useLocation()
 
   const onToggleSidedrawer = () => {
     setSidedrawer(!sidedrawer)
@@ -46,17 +39,20 @@ const Navbar = ({ isAuthenticated }) => {
             />
             <NavbarList>
               <NavbarItem>
-                <StyledNavLink exact to='/' activeClassName='active'>
+                <StyledNavLink to='/' exact activeClassName='active'>
                   Disk
                 </StyledNavLink>
               </NavbarItem>
               <NavbarItem>
-                <StyledNavLink to='/profile' exact activeClassName='active'>
+                <StyledNavLink to='/profile' activeClassName='active'>
                   Profile
                 </StyledNavLink>
               </NavbarItem>
               <NavbarItem>
-                <NavbarLink href='/login' onClick={onLogoutUser}>
+                <NavbarLink
+                  href='/login'
+                  onClick={() => dispatch(actions.logoutUser())}
+                >
                   Logout
                 </NavbarLink>
               </NavbarItem>
@@ -71,12 +67,12 @@ const Navbar = ({ isAuthenticated }) => {
             />
             <NavbarList>
               <NavbarItem>
-                <StyledNavLink exact to='/' activeClassName='active'>
+                <StyledNavLink to='/' exact activeClassName='active'>
                   Login
                 </StyledNavLink>
               </NavbarItem>
               <NavbarItem>
-                <StyledNavLink to='/singup' exact activeClassName='active'>
+                <StyledNavLink to='/singup' activeClassName='active'>
                   Singup
                 </StyledNavLink>
               </NavbarItem>

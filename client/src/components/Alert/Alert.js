@@ -12,7 +12,7 @@ const Alert = () => {
     clearTimeout(window.timeoutId)
 
     window.timeoutId = setTimeout(() => {
-      dispatch(actionCreators.hideAlert())
+      dispatch(actionCreators.alertHide())
     }, 3000)
     // eslint-disable-next-line
   }, [alert])
@@ -23,7 +23,7 @@ const Alert = () => {
       <Icon
         alertIcon
         className='fas fa-times'
-        onClick={() => dispatch(actionCreators.hideAlert())}
+        onClick={() => dispatch(actionCreators.alertHide())}
       />
     </AlertStyles>
   )

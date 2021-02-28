@@ -19,7 +19,7 @@ const Global = createGlobalStyle`
   }
 
   html {
-    @media ${(props) => props.theme.media.mobile} {
+    @media ${(props) => props.theme.media.tablet} {
       font-size: 14px;
     }
   }
@@ -33,7 +33,6 @@ const theme = {
   media: {
     mobile: '(max-width: 425px)',
     tablet: '(max-width: 768px)',
-    laptop: '(min-width: 1024px)',
   },
 }
 

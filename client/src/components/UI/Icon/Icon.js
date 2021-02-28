@@ -8,9 +8,7 @@ const Icon = (props) => {
 export default Icon
 
 const IconStyles = styled.i`
-  @media ${(props) => props.theme.media.laptop && props.navbarIcon} {
-    display: inline-block;
-  }
+  display: inline-block;
 
   ${(props) =>
     props.alertIcon &&
@@ -27,7 +25,6 @@ const IconStyles = styled.i`
   ${(props) =>
     props.fileIconImageTable &&
     css`
-      display: block;
       font-size: 9rem;
     `}
 
@@ -45,7 +42,7 @@ const IconStyles = styled.i`
     css`
       position: absolute;
       right: -1px;
-      top: -4px;
+      top: -3px;
       font-size: 2rem;
       cursor: pointer;
     `}
@@ -56,6 +53,10 @@ const IconStyles = styled.i`
       display: none;
       font-size: 1.5rem;
       color: #fff;
+
+      @media ${(props) => props.theme.media.tablet} {
+        display: inline-block;
+      }
     `}
 
     ${(props) =>
