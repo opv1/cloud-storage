@@ -13,21 +13,17 @@ const ButtonStyles = styled.button`
   border-radius: 5px;
   padding: 0.5rem;
   color: #fff;
+  background: ${(props) => props.theme.colors.secondary};
   cursor: pointer;
 
   &:disabled {
     opacity: 0.5;
+    user-select: none;
   }
 
   ${(props) =>
     props.panelButton &&
     css`
       margin: 0.5rem;
-    `}
-
-  ${(props) =>
-    props.secondaryColor &&
-    css`
-      background-color: ${(props) => props.theme.colors.secondary};
     `}
 `

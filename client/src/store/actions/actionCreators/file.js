@@ -38,7 +38,7 @@ export const fileAdd = (file) => ({
   payload: file,
 })
 
-export const fileDelete = (fileId) => ({
+export const fileDelete = (file) => ({
   type: FILE_DELETE,
-  payload: fileId,
+  payload: file,
 })

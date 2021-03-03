@@ -8,18 +8,17 @@ const Modal = () => {
   const { type } = useSelector((state) => state.modal)
   const dispatch = useDispatch()
 
-  const handlerClick = (e) => {
-    if (e.target.getAttribute('data-attr') === 'modal') {
-      dispatch(actionCreators.modalClose())
-    }
+  const onCloseModal = () => {
+    dispatch(actionCreators.appBackdrop())
+    dispatch(actionCreators.modalClose())
   }
 
   if (type === 'confirmDelete') {
-    return <ModalConfirmDelete handlerClick={handlerClick} />
+    return <ModalConfirmDelete onCloseModal={onCloseModal} />
   }
 
   if (type === 'createFolder') {
-    return <ModalCreateFolder handlerClick={handlerClick} />
+    return <ModalCreateFolder onCloseModal={onCloseModal} />
   }
 }
 

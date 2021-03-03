@@ -1,6 +1,7 @@
 import Alert from 'components/Alert/Alert'
 import Login from 'components/Auth/Login'
 import Singup from 'components/Auth/Singup'
+import Backdrop from 'components/Backdrop/Backdrop'
 import Disk from 'components/Disk/Disk'
 import File from 'components/File/File'
 import Loader from 'components/Loader/Loader'
@@ -17,6 +18,7 @@ export {
   Alert,
   Login,
   Singup,
+  Backdrop,
   Disk,
   File,
   Loader,

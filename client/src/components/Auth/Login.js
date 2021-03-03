@@ -49,7 +49,6 @@ const Login = () => {
             />
           </LoginBlock>
           <Button
-            secondaryColor
             loginButton
             onClick={(e) => onLoginUser(e, form)}
             name='Login'
@@ -77,7 +76,7 @@ const LoginContainer = styled.div`
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 2rem;
-  background-color: #fff;
+  background: #fff;
 `
 
 const LoginTitle = styled.span`

@@ -25,6 +25,7 @@ const File = ({ file }) => {
   const onDeleteFile = (e) => {
     e.stopPropagation()
     dispatch(actionCreators.fileSet(file))
+    dispatch(actionCreators.appBackdrop())
     dispatch(actionCreators.modalOpen('confirmDelete'))
   }
 

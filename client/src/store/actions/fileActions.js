@@ -158,7 +158,7 @@ export const deleteFile = (file) => {
         headers: { Authorization: `Bearer ${data.token}` },
       })
 
-      dispatch(actionCreators.fileDelete(file._id))
+      dispatch(actionCreators.fileDelete(file))
 
       dispatch(actionCreators.alertShow(response.data.message))
     } catch (err) {

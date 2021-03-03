@@ -41,7 +41,7 @@ const AlertStyles = styled.div`
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 1rem;
-  background-color: #fff;
+  background: #fff;
 `
 
 const AlertMessage = styled.span`

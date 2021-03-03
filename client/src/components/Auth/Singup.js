@@ -64,7 +64,6 @@ const Singup = () => {
             />
           </SingupBlock>
           <Button
-            secondaryColor
             singupButton
             onClick={(e) => onSingupUser(e, form)}
             name='Singup'
@@ -92,7 +91,7 @@ const SingupContainer = styled.div`
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 2rem;
-  background-color: #fff;
+  background: #fff;
 `
 
 const SingupTitle = styled.span`

@@ -9,6 +9,7 @@ export default Icon
 
 const IconStyles = styled.i`
   display: inline-block;
+  transition: opacity 0.2s;
 
   ${(props) =>
     props.alertIcon &&
@@ -41,8 +42,8 @@ const IconStyles = styled.i`
     props.modalIcon &&
     css`
       position: absolute;
-      right: -1px;
-      top: -3px;
+      right: -33px;
+      top: -36px;
       font-size: 2rem;
       cursor: pointer;
     `}

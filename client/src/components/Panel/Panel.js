@@ -17,6 +17,11 @@ const Panel = () => {
     dispatch(actionCreators.filesCurrentDir(backDir))
   }
 
+  const onCreateFolder = () => {
+    dispatch(actionCreators.appBackdrop())
+    dispatch(actionCreators.modalOpen('createFolder'))
+  }
+
   const onUploadFiles = (e) => {
     const files = [...e.target.files]
     files.forEach((file) => dispatch(actions.uploadFile(currentDir, file)))
@@ -32,18 +37,12 @@ const Panel = () => {
       <Search searchPanel />
       <PanelButtons>
         <Button
-          secondaryColor
           panelButton
           onClick={() => onGoBack()}
           name='Back'
           disabled={!currentDir}
         />
-        <Button
-          secondaryColor
-          panelButton
-          onClick={() => dispatch(actionCreators.modalOpen('createFolder'))}
-          name='Create folder'
-        />
+        <Button panelButton onClick={onCreateFolder} name='Create folder' />
       </PanelButtons>
       <PanelUpload>
         <Label panelLabel htmlFor='file' name='Upload file(s):' />

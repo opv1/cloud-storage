@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useRoutes } from 'hooks/useRoutes'
 import actions from 'store/actions/index'
-import { Loader, Alert, Modal, Navbar } from 'components/index'
+import { Loader, Alert, Backdrop, Modal, Navbar } from 'components/index'
 
 const App = () => {
   const { alert } = useSelector((state) => state.alert)
-  const { ready } = useSelector((state) => state.app)
+  const { ready, backdrop, sidedrawer } = useSelector((state) => state.app)
   const { modal } = useSelector((state) => state.modal)
   const { token } = useSelector((state) => state.user)
   const dispatch = useDispatch()
@@ -31,6 +31,12 @@ const App = () => {
   return (
     <AppStyles>
       {alert ? <Alert /> : null}
+      {backdrop ? (
+        <Backdrop
+          modal={modal && 'modalBackdrop'}
+          sidedrawer={sidedrawer && 'sidedrawerBackdrop'}
+        />
+      ) : null}
       {modal ? <Modal /> : null}
       <Navbar isAuthenticated={isAuthenticated} />
       {routes}

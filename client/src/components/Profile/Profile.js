@@ -53,7 +53,6 @@ const Profile = () => {
             />
           </ProfileBlock>
           <Button
-            secondaryColor
             profileButton
             onClick={onDeleteAvatar}
             name='Delete avatar'

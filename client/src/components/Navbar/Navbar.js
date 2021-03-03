@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import actions from 'store/actions/index'
+import actionCreators from 'store/actions/actionCreators/index'
 import { Search, Sidedrawer } from 'components/index'
 import { Icon } from 'components/UI/index'
 
 const Navbar = ({ isAuthenticated }) => {
-  const [sidedrawer, setSidedrawer] = useState(false)
+  const { sidedrawer } = useSelector((state) => state.app)
   const dispatch = useDispatch()
   const location = useLocation()
 
   const onToggleSidedrawer = () => {
-    setSidedrawer(!sidedrawer)
+    dispatch(actionCreators.appBackdrop())
+    dispatch(actionCreators.appSidedrawer())
   }
 
   return (
@@ -23,12 +25,11 @@ const Navbar = ({ isAuthenticated }) => {
       {location.pathname === '/' && isAuthenticated ? (
         <Search searchNavbar />
       ) : null}
-      {sidedrawer ? (
-        <Sidedrawer
-          isAuthenticated={isAuthenticated}
-          onToggleSidedrawer={onToggleSidedrawer}
-        />
-      ) : null}
+      <Sidedrawer
+        isAuthenticated={isAuthenticated}
+        sidedrawer={sidedrawer}
+        onToggleSidedrawer={onToggleSidedrawer}
+      />
       <NavbarNav>
         {isAuthenticated ? (
           <>
@@ -92,7 +93,7 @@ const NavbarStyles = styled.div`
   justify-content: space-between;
   padding: 0 3rem;
   height: 60px;
-  background-color: #f1404b;
+  background: ${(props) => props.theme.colors.primary};
 `
 
 const NavbarBrand = styled.div`

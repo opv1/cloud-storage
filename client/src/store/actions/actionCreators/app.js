@@ -1,4 +1,10 @@
-import { APP_READY, APP_LOADING, APP_VIEW } from 'store/constants'
+import {
+  APP_READY,
+  APP_LOADING,
+  APP_BACKDROP,
+  APP_SIDEDRAWER,
+  APP_VIEW,
+} from 'store/constants'
 
 export const appReady = (ready) => ({
   type: APP_READY,
@@ -7,6 +13,14 @@ export const appReady = (ready) => ({
 
 export const appLoading = () => ({
   type: APP_LOADING,
+})
+
+export const appBackdrop = () => ({
+  type: APP_BACKDROP,
+})
+
+export const appSidedrawer = () => ({
+  type: APP_SIDEDRAWER,
 })
 
 export const appView = (view) => ({

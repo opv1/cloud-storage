@@ -13,9 +13,10 @@ const InputStyles = styled.input`
   border-radius: 5px;
   padding: 0.5rem;
   text-align: center;
+  transition: background-color 0.2s;
 
   &:focus {
-    background-color: #eee;
+    background: #eee;
   }
 
   ${(props) =>

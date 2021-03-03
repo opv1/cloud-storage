@@ -48,6 +48,7 @@ const FileStyles = styled.div`
   align-items: center;
   grid-template-columns: 1fr 4fr repeat(4, 1fr);
   border-bottom: 1px solid #696969;
+  transition: 0.2s;
 
   &:hover {
     transform: scale(1.02);
