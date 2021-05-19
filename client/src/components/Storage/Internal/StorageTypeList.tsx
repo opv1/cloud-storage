@@ -67,19 +67,21 @@ const StorageName = styled.div`
 const StorageDate = styled.div`
   justify-self: center;
   grid-column-start: 5;
+  text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
     grid-column-start: 4;
   }
 
   @media ${({ theme }) => theme.media.mobile} {
-    grid-column-start: 3;
+    display: none;
   }
 `
 
 const StorageSize = styled.div`
   justify-self: center;
   grid-column-start: 6;
+  text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
     grid-column-start: 5;

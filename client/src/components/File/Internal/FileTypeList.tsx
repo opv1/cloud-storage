@@ -91,7 +91,7 @@ const FileName = styled.div`
   display: flex;
   align-items: center;
   grid-column-start: 2;
-  margin: 0.3rem;
+  overflow: hidden;
   width: 100%;
   height: 100%;
 
@@ -104,8 +104,8 @@ const FileIcons = styled.div`
   display: grid;
   grid-column-start: 4;
   grid-template-columns: repeat(2, 1fr);
-  margin: 0.3rem;
   width: 100%;
+  text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
     display: flex;
@@ -115,33 +115,30 @@ const FileIcons = styled.div`
   }
 
   @media ${({ theme }) => theme.media.mobile} {
-    grid-column-start: 2;
+    grid-column-start: 3;
   }
 `
 
 const FileDate = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   justify-self: center;
   grid-column-start: 5;
-  margin: 0.3rem;
   width: 100%;
+  text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
     grid-column-start: 4;
   }
 
   @media ${({ theme }) => theme.media.mobile} {
-    grid-column-start: 3;
+    display: none;
   }
 `
 
 const FileSize = styled.div`
   justify-self: center;
   grid-column-start: 6;
-  margin: 0.3rem;
   width: 100%;
+  text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
     grid-column-start: 5;

@@ -64,6 +64,7 @@ const ModalHeader = styled.div`
 
 const ModalTitle = styled.span`
   font-size: 1.5rem;
+  text-align: center;
 `
 
 const ModalBlock = styled.div`
