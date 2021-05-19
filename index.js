@@ -3,7 +3,7 @@ import expressFileupload from 'express-fileupload'
 import mongoose from 'mongoose'
 import path from 'path'
 import config from 'config'
-import corsMiddleware from './middlewares/cors.js'
+import cors from 'cors'
 import pathMiddleware from './middlewares/path.js'
 import authRoute from './routes/auth.js'
 import fileRoute from './routes/file.js'
@@ -12,7 +12,7 @@ const app = express()
 const __dirname = path.resolve()
 const PORT = process.env.PORT || config.get('PORT')
 
-app.use(corsMiddleware)
+app.use(cors())
 app.use(pathMiddleware.filePath(path.resolve(__dirname, 'files')))
 app.use(pathMiddleware.staticPath(path.resolve(__dirname, 'static')))
 app.use(express.json())

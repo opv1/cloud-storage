@@ -7,4 +7,4 @@
 
 ## Description
 
-Stack: MERN
+Stack: MERN + Redux + TypeScript + Styled-components
