@@ -66,4 +66,5 @@ const AppStyles = styled.div`
   margin: auto;
   height: 100vh;
   min-width: 320px;
+  max-width: 1440px;
 `
